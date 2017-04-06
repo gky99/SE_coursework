@@ -12,5 +12,6 @@ public class ShowTable {
     ArrayList<Film> films;
     ArrayList<CinemaScreen> screens;
 
+    ArrayList<ShowedFilm> showedFilms;
 
 }

@@ -5,9 +5,13 @@ import java.time.LocalTime;
 /**
  * Created by Pauli on 2017/4/7.
  */
-public class Film {
-    LocalTime startTime;
-    int filmLength;
+public class ShowedFilm {
+    Film film;
+    CinemaScreen screen;
 
-    String movieName;
+
+    LocalTime startTime;
+//    LocalTime endTime;
+
+    double price;
 }

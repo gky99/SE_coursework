@@ -4,9 +4,11 @@
 package Model;
 
 public class Ticket {
-    Film film;
+    ShowedFilm film;
 
     String ticketType;
+
+    double ticketPrice;
 
     public Ticket() {
     }
