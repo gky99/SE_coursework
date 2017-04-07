@@ -25,19 +25,32 @@
 package Model;
 
 public class Ticket {
+    private static int ticketNumber;
+
     ShowedFilm film;
 
     String ticketType;
 
     double ticketPrice;
 
-    public Ticket() {
+    public Ticket(ShowedFilm film, String ticketType) {
+    }
+
+    /**
+     * Print ticket into the filePath;
+     * after each print, the ticketNumber add by 1
+     */
+    private void printTicket() {
+        String filePath;
+    }
+
+    /**
+     * Count the ticket price according to the ticketType
+     */
+    public static int countPrice(int price, String ticketType) {
+        return price;
     }
 
     public static void main(String[] args) {
-    }
-
-    private void printTicket() {
-
     }
 }

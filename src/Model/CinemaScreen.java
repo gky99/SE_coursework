@@ -27,4 +27,17 @@ package Model;
 public class CinemaScreen extends Seats {
     int screenNum;
 
+    /**
+     * Initialize the seats into vectors with number of column of the seat
+     * read out directly from the file.
+     * 0 represents there isn't a seat there.
+     *
+     * @param filePath  Path to the screen info directory
+     * @param screenNum screen number
+     *                  <p>
+     *                  The screen info text should be in [filePath]/screen[screenNum].txt
+     */
+    public CinemaScreen(String filePath, int screenNum) {
+        this.screenNum = screenNum;
+    }
 }

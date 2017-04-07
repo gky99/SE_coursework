@@ -35,4 +35,34 @@ public class ShowTable {
 
     ArrayList<ShowedFilm> showedFilms;
 
+    /**
+     * Initialize the date to today,
+     * and all other variable according to text files.
+     */
+    public ShowTable() {
+    }
+
+    /**
+     * Initialize films according to text files
+     *
+     * @param filePath
+     */
+    private void initFilms(String filePath) {
+    }
+
+    /**
+     * Initialize films according to text files
+     *
+     * @param filePath
+     */
+    private void initCinemaScreen(String filePath) {
+    }
+
+    /**
+     * Initialize films according to text files
+     *
+     * @param filePath
+     */
+    private void initShowedFilm(String filePath) {
+    }
 }

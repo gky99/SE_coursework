@@ -27,5 +27,6 @@ import java.util.Vector;
  * Created by Pauli on 2017/4/7.
  */
 public abstract class Seats {
+    //    represent seats in vector
     Vector<Vector<Integer>> seats;
 }

@@ -29,10 +29,17 @@ import java.time.LocalTime;
 public class ShowedFilm {
     Film film;
     CinemaScreen screen;
-
+    AvailableSeats seats;
 
     LocalTime startTime;
 //    LocalTime endTime;
 
     double price;
+
+    /**
+     * Init the availableSeats according to screen,
+     * and init all other variables.
+     */
+    public ShowedFilm(Film film, CinemaScreen screen, LocalTime startTime) {
+    }
 }

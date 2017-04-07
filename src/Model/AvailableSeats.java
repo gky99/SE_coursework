@@ -25,5 +25,16 @@ package Model;
  * Created by Pauli on 2017/4/7.
  */
 public class AvailableSeats extends Seats {
+    /**
+     * Initialize the seats into vectors with 0 and 1
+     * 0 represents the seat there is taken or there isn't a seat there
+     * 1 represents the seat is available there
+     *
+     * @param seats initialize the availableSeats according to existing seat vector.
+     */
+    public AvailableSeats(Seats seats) {
+
+    }
+
 
 }
