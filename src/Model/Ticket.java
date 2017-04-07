@@ -9,7 +9,7 @@
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
+ * the Free Software Foundation, either version 2 of the License, or
  * (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
@@ -25,19 +25,36 @@
 package Model;
 
 public class Ticket {
-    ShowedFilm film;
+    private static int ticketNumber;
+
+    Play play;
 
     String ticketType;
+    String seat;
 
     double ticketPrice;
+
+    public Ticket(Play film, String ticketType, String seat) {
+    }
 
     public Ticket() {
     }
 
-    public static void main(String[] args) {
+    /**
+     * Print ticket into the filePath;
+     * after each print, the ticketNumber add by 1
+     */
+    private void printTicket() {
+        String filePath;
     }
 
-    private void printTicket() {
+    /**
+     * Count the ticket price according to the ticketType
+     */
+    public static int countPrice(int price, String ticketType) {
+        return price;
+    }
 
+    public static void main(String[] args) {
     }
 }

@@ -9,7 +9,7 @@
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
+ * the Free Software Foundation, either version 2 of the License, or
  * (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
@@ -21,18 +21,9 @@
 
 package Model;
 
-import java.time.LocalTime;
-
 /**
  * Created by Pauli on 2017/4/7.
  */
-public class ShowedFilm {
-    Film film;
-    CinemaScreen screen;
-
-
-    LocalTime startTime;
-//    LocalTime endTime;
-
-    double price;
+public class Report {
+    
 }

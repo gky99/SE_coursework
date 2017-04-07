@@ -9,7 +9,7 @@
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
+ * the Free Software Foundation, either version 2 of the License, or
  * (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
@@ -33,6 +33,36 @@ public class ShowTable {
     ArrayList<Film> films;
     ArrayList<CinemaScreen> screens;
 
-    ArrayList<ShowedFilm> showedFilms;
+    ArrayList<Play> plays;
 
+    /**
+     * Initialize the date to today,
+     * and all other variable according to text files.
+     */
+    public ShowTable() {
+    }
+
+    /**
+     * Initialize films according to text files
+     *
+     * @param filePath
+     */
+    private void initFilms(String filePath) {
+    }
+
+    /**
+     * Initialize films according to text files
+     *
+     * @param filePath
+     */
+    private void initCinemaScreen(String filePath) {
+    }
+
+    /**
+     * Initialize films according to text files
+     *
+     * @param filePath
+     */
+    private void initPlay(String filePath) {
+    }
 }
