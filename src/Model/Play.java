@@ -9,7 +9,7 @@
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
+ * the Free Software Foundation, either version 2 of the License, or
  * (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
@@ -26,9 +26,14 @@ import java.time.LocalTime;
 /**
  * Created by Pauli on 2017/4/7.
  */
-public class ShowedFilm {
+public class Play {
+    /**
+     * An alphabet list helped to trans row number to alphabets
+     */
+    private static final char[] alphabet = {};
+
     Film film;
-    CinemaScreen screen;
+    private final CinemaScreen screen = null;
     AvailableSeats seats;
 
     LocalTime startTime;
@@ -40,6 +45,40 @@ public class ShowedFilm {
      * Init the availableSeats according to screen,
      * and init all other variables.
      */
-    public ShowedFilm(Film film, CinemaScreen screen, LocalTime startTime) {
+    public Play(Film film, CinemaScreen screen, LocalTime startTime) {
     }
+
+    public Play() {
+    }
+
+    /**
+     * Change the seat flag in seats to 0
+     *
+     * @return the seat mark like: A6, G8
+     */
+    private String takeASeat(int col, int row) {
+        return new String();
+    }
+
+    /**
+     * Reverse process of takeASeat
+     */
+    private void returnASeat(String seat) {
+
+    }
+
+    /**
+     * Transform the row number to alphabets
+     */
+    private char ItoA(int row) {
+        return 'A';
+    }
+
+    /**
+     * Transform the row mark to row number
+     */
+    private int AtoI(char mark) {
+        return 0;
+    }
+
 }

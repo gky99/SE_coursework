@@ -21,48 +21,9 @@
 
 package Model;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-
 /**
  * Created by Pauli on 2017/4/7.
  */
-public class ShowTable {
-    LocalDate date;
-
-    ArrayList<Film> films;
-    ArrayList<CinemaScreen> screens;
-
-    ArrayList<Play> plays;
-
-    /**
-     * Initialize the date to today,
-     * and all other variable according to text files.
-     */
-    public ShowTable() {
-    }
-
-    /**
-     * Initialize films according to text files
-     *
-     * @param filePath
-     */
-    private void initFilms(String filePath) {
-    }
-
-    /**
-     * Initialize films according to text files
-     *
-     * @param filePath
-     */
-    private void initCinemaScreen(String filePath) {
-    }
-
-    /**
-     * Initialize films according to text files
-     *
-     * @param filePath
-     */
-    private void initPlay(String filePath) {
-    }
+public class Report {
+    
 }
