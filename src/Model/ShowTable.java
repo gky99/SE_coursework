@@ -48,7 +48,16 @@ public class ShowTable {
      * @param filePath
      */
     private void initFilms(String filePath) {
+    	ArrayList<Film> movie = new ArrayList<Film>();
+    	movie = Film.readMovie(filePath);
+    	
+    	for (int i = 0; movie.get(i)!= null;i++){
+         	System.out.println(movie.get(i).movieName);
+         	System.out.println(movie.get(i).pathToPicture);
+         	System.out.println(movie.get(i).filmLength + " min");
+        }
     }
+    
 
     /**
      * Initialize films according to text files
