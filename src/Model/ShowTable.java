@@ -21,6 +21,10 @@
 
 package Model;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -56,6 +60,32 @@ public class ShowTable {
      * @param filePath
      */
     private void initCinemaScreen(String filePath) {
+    	ArrayList<ArrayList<Integer>> seats=null; 
+    	File file = new File(filePath);
+    	Reader reader = null;
+		try {
+               reader = new InputStreamReader(new FileInputStream(file));
+               int tempchar;
+               
+               ArrayList<Integer> list=new ArrayList<Integer>() ;
+               while ((tempchar = reader.read()) != -1) {
+            	   
+                   if (((char) tempchar) != '\r'&&((char) tempchar) != '\n'&&((char) tempchar) != ',') {
+                	  
+                	   char a=(char) tempchar;
+                	   int i=a-'0';
+                	   list.add(i);
+                	  
+                	  }
+                   if(((char) tempchar) == '\n'){
+                	   seats.add(list);
+                	   list=new ArrayList<Integer>() ;
+                   }
+               }
+               reader.close();
+           } catch (Exception e) {
+               e.printStackTrace();
+           }
     }
 
     /**
