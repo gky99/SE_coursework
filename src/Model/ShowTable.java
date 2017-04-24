@@ -38,7 +38,7 @@ public class ShowTable {
     ArrayList<CinemaScreen> screens;
 
     ArrayList<Play> plays;
-
+    String filePath;
     /**
      * Initialize the date to today,
      * and all other variable according to text files.
@@ -60,32 +60,13 @@ public class ShowTable {
      * @param filePath
      */
     private void initCinemaScreen(String filePath) {
-    	ArrayList<ArrayList<Integer>> seats=null; 
-    	File file = new File(filePath);
-    	Reader reader = null;
-		try {
-               reader = new InputStreamReader(new FileInputStream(file));
-               int tempchar;
-               
-               ArrayList<Integer> list=new ArrayList<Integer>() ;
-               while ((tempchar = reader.read()) != -1) {
-            	   
-                   if (((char) tempchar) != '\r'&&((char) tempchar) != '\n'&&((char) tempchar) != ',') {
-                	  
-                	   char a=(char) tempchar;
-                	   int i=a-'0';
-                	   list.add(i);
-                	  
-                	  }
-                   if(((char) tempchar) == '\n'){
-                	   seats.add(list);
-                	   list=new ArrayList<Integer>() ;
-                   }
-               }
-               reader.close();
-           } catch (Exception e) {
-               e.printStackTrace();
-           }
+    	this.filePath =  filePath;
+    	CinemaScreen screen1=new CinemaScreen(filePath,1);
+    	screens.add(screen1);
+    	CinemaScreen screen2=new CinemaScreen(filePath,2);
+    	screens.add(screen2);
+    	CinemaScreen screen3=new CinemaScreen(filePath,3);
+    	screens.add(screen3);
     }
 
     /**

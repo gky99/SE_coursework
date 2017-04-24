@@ -33,7 +33,8 @@ import java.util.ArrayList;
 public class CinemaScreen extends Seats {
     int screenNum;
 	String filePath;
-
+	String path;
+    
     /**
      * Initialize the seats into vectors with number of column of the seat
      * read out directly from the file.
@@ -46,11 +47,12 @@ public class CinemaScreen extends Seats {
      *                  The screen info text should be in [filePath]/screen[screenNum].txt
      */
     public CinemaScreen(String filePath, int screenNum) {
-        this.screenNum = screenNum;
+    	this.screenNum = screenNum;
         this.filePath =  filePath;
-        String path=filePath+"/screen"+screenNum;
+        path=filePath+"/screen"+screenNum+".txt";
         File file = new File(path);
     	Reader reader = null;
+    	ArrayList<ArrayList<Integer>> seats=new ArrayList<ArrayList<Integer>>();
 		try {
                reader = new InputStreamReader(new FileInputStream(file));
                int tempchar;
@@ -62,6 +64,9 @@ public class CinemaScreen extends Seats {
                 	  
                 	   char a=(char) tempchar;
                 	   int i=a-'0';
+                	   if(i==0)
+                	   list.add(-1);
+                	   else
                 	   list.add(i);
                 	  
                 	  }
@@ -74,6 +79,7 @@ public class CinemaScreen extends Seats {
            } catch (Exception e) {
                e.printStackTrace();
            }
+		this.seats=seats;
     }
 
     public CinemaScreen() {

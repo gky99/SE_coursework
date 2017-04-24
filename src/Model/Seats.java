@@ -30,5 +30,5 @@ import java.util.Vector;
 public abstract class Seats {
     //    represent seats in vector
     //Vector<Vector<Integer>> seats;
-    ArrayList<ArrayList<Integer>> seats; 
+      ArrayList<ArrayList<Integer>> seats; 
 }
