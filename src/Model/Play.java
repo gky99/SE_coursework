@@ -22,6 +22,7 @@
 package Model;
 
 import java.time.LocalTime;
+import java.util.Vector;
 
 /**
  * Created by Pauli on 2017/4/7.
@@ -30,7 +31,7 @@ public class Play {
     /**
      * An alphabet list helped to trans row number to alphabets
      */
-    private static final char[] alphabet = {};
+    private static final char[] alphabet = {'A','B','C','D','E'};
 
     Film film;
     private final CinemaScreen screen = null;
@@ -46,6 +47,11 @@ public class Play {
      * and init all other variables.
      */
     public Play(Film film, CinemaScreen screen, LocalTime startTime) {
+	    this.film = film;
+	    this.screen = screen;
+	    seats = new AvailableSeats(screen);
+	    this.startTime = startTime;
+	    this.price = 16.0;
     }
 
     public Play() {
@@ -56,29 +62,43 @@ public class Play {
      *
      * @return the seat mark like: A6, G8
      */
-    private String takeASeat(int col, int row) {
-        return new String();
+    private String takeASeat(int row, int col) {
+	    if( seats.seats.get(row-1).get(col-1) == 1 ){
+		    seats.seats.get(row-1).setElementAt(0,col-1);
+		    return alphabet[row-1]+""+col;
+	    }
+	    else return ""+-1;
     }
 
     /**
      * Reverse process of takeASeat
      */
     private void returnASeat(String seat) {
-
+	    int row = new Play().AtoI(seat.charAt(0));
+	    int col = Integer.parseInt(String.valueOf(seat.charAt(1)));
+	    if( seats.seats.get(row-1).get(col-1) == 0 ){
+		    seats.seats.get(row-1).setElementAt(1,col-1);
+	    }
     }
 
     /**
      * Transform the row number to alphabets
      */
     private char ItoA(int row) {
-        return 'A';
+	    return alphabet[row-1];
     }
 
     /**
      * Transform the row mark to row number
      */
     private int AtoI(char mark) {
-        return 0;
+	    int i;
+	    for( i=0; i<=4; i++){
+		    if( alphabet[i] == mark ){
+			    return i+1;
+		    }
+	    }
+	    return -1;
     }
 
 }
