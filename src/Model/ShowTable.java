@@ -28,13 +28,13 @@ import java.util.ArrayList;
  * Created by Pauli on 2017/4/7.
  */
 public class ShowTable {
-    LocalDate date;
+    static LocalDate date;
 
     ArrayList<Film> films;
     ArrayList<CinemaScreen> screens;
 
     ArrayList<Play> plays;
-    String filePath;
+
     /**
      * Initialize the date to today,
      * and all other variable according to text files.
@@ -48,13 +48,14 @@ public class ShowTable {
      * @param filePath
      */
     private void initFilms(String filePath) {
-    	this.filePath =  filePath;
-    	for(int i=1;i<=3;i++){
-    		CinemaScreen screen=new CinemaScreen(filePath,i);	
-    		screens.add(screen);
-    }
-
- 
+    	ArrayList<Film> movie = new ArrayList<Film>();
+    	movie = Film.readMovie(filePath);
+    	
+    	for (int i = 0; movie.get(i)!= null;i++){
+         	System.out.println(movie.get(i).movieName);
+         	System.out.println(movie.get(i).pathToPicture);
+         	System.out.println(movie.get(i).filmLength + " min");
+        }
     }
 
     /**
@@ -62,6 +63,14 @@ public class ShowTable {
      *
      * @param filePath
      */
-    private void initPlay(String filePath) {
+    private void initCinemaScreens(String filePath) {
+    }
+
+    /**
+     * Initialize films according to text files
+     *
+     * @param filePath
+     */
+    private void initPlays(String filePath) {
     }
 }
