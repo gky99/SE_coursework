@@ -34,7 +34,7 @@ public class ShowTable {
     ArrayList<CinemaScreen> screens;
 
     ArrayList<Play> plays;
-
+    String filePath;
     /**
      * Initialize the date to today,
      * and all other variable according to text files.
@@ -48,14 +48,13 @@ public class ShowTable {
      * @param filePath
      */
     private void initFilms(String filePath) {
+    	this.filePath =  filePath;
+    	for(int i=1;i<=3;i++){
+    		CinemaScreen screen=new CinemaScreen(filePath,i);	
+    		screens.add(screen);
     }
 
-    /**
-     * Initialize films according to text files
-     *
-     * @param filePath
-     */
-    private void initCinemaScreen(String filePath) {
+ 
     }
 
     /**
