@@ -21,10 +21,6 @@
 
 package Model;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -52,21 +48,13 @@ public class ShowTable {
      * @param filePath
      */
     private void initFilms(String filePath) {
+    	this.filePath =  filePath;
+    	for(int i=1;i<=3;i++){
+    		CinemaScreen screen=new CinemaScreen(filePath,i);	
+    		screens.add(screen);
     }
 
-    /**
-     * Initialize films according to text files
-     *
-     * @param filePath
-     */
-    private void initCinemaScreen(String filePath) {
-    	this.filePath =  filePath;
-    	CinemaScreen screen1=new CinemaScreen(filePath,1);
-    	screens.add(screen1);
-    	CinemaScreen screen2=new CinemaScreen(filePath,2);
-    	screens.add(screen2);
-    	CinemaScreen screen3=new CinemaScreen(filePath,3);
-    	screens.add(screen3);
+ 
     }
 
     /**

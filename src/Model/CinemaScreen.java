@@ -25,7 +25,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
-import java.util.ArrayList;
+
+import java.util.Vector;
 
 /**
  * Created by Pauli on 2017/4/7.
@@ -52,12 +53,14 @@ public class CinemaScreen extends Seats {
         path=filePath+"/screen"+screenNum+".txt";
         File file = new File(path);
     	Reader reader = null;
-    	ArrayList<ArrayList<Integer>> seats=new ArrayList<ArrayList<Integer>>();
+    	//ArrayList<ArrayList<Integer>> seats=new ArrayList<ArrayList<Integer>>();
+    	Vector<Vector<Integer>> seats=new Vector<Vector<Integer>>();
 		try {
                reader = new InputStreamReader(new FileInputStream(file));
                int tempchar;
                
-               ArrayList<Integer> list=new ArrayList<Integer>() ;
+              // ArrayList<Integer> list=new ArrayList<Integer>() ;
+               Vector<Integer> list=new Vector<Integer>() ;
                while ((tempchar = reader.read()) != -1) {
             	   
                    if (((char) tempchar) != '\r'&&((char) tempchar) != '\n'&&((char) tempchar) != ',') {
@@ -72,7 +75,8 @@ public class CinemaScreen extends Seats {
                 	  }
                    if(((char) tempchar) == '\n'){
                 	   seats.add(list);
-                	   list=new ArrayList<Integer>() ;
+                	   //list=new ArrayList<Integer>() ;
+                	   list=new Vector<Integer>() ;
                    }
                }
                reader.close();

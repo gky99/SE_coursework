@@ -21,11 +21,7 @@
 
 package Model;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.util.ArrayList;
+
 import java.util.Vector;
 
 /**
@@ -39,7 +35,8 @@ public class AvailableSeats extends Seats {
      *
      * @param seats initialize the availableSeats according to existing seat vector.
      */
-	ArrayList<ArrayList<Integer>> availableseats; 
+	//ArrayList<ArrayList<Integer>> availableseats; 
+	Vector<Vector<Integer>>  availableseats=new Vector<Vector<Integer>>();
     public AvailableSeats(Seats seats) { 
     	availableseats=seats.seats;
       }

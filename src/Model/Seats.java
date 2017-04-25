@@ -21,7 +21,6 @@
 
 package Model;
 
-import java.util.ArrayList;
 import java.util.Vector;
 
 /**
@@ -29,6 +28,6 @@ import java.util.Vector;
  */
 public abstract class Seats {
     //    represent seats in vector
-    //Vector<Vector<Integer>> seats;
-      ArrayList<ArrayList<Integer>> seats; 
+    Vector<Vector<Integer>> seats;
+     
 }
