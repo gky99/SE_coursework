@@ -35,6 +35,7 @@ public class Ticket {
     double ticketPrice;
 
     public Ticket(Play film, String ticketType, String seat) {
+
     }
 
     public Ticket() {
