@@ -49,13 +49,13 @@ public class CinemaScreen extends Seats {
         String path=filePath+"/screen"+screenNum+".txt";
         File file = new File(path);
     	Reader reader = null;
-    	//ArrayList<ArrayList<Integer>> seats=new ArrayList<ArrayList<Integer>>();
+    	
     	Vector<Vector<Integer>> seats=new Vector<Vector<Integer>>();
 		try {
                reader = new InputStreamReader(new FileInputStream(file));
                int tempchar;
                
-              // ArrayList<Integer> list=new ArrayList<Integer>() ;
+             
                Vector<Integer> list=new Vector<Integer>() ;
                while ((tempchar = reader.read()) != -1) {
             	   
@@ -71,7 +71,7 @@ public class CinemaScreen extends Seats {
                 	  }
                    if(((char) tempchar) == '\n'){
                 	   seats.add(list);
-                	   //list=new ArrayList<Integer>() ;
+                	  
                 	   list=new Vector<Integer>() ;
                    }
                }
