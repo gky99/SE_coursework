@@ -21,6 +21,8 @@
 
 package Model;
 
+import java.util.Vector;
+
 /**
  * Created by Pauli on 2017/4/7.
  */
@@ -32,8 +34,10 @@ public class AvailableSeats extends Seats {
      *
      * @param seats initialize the availableSeats according to existing seat vector.
      */
+	Vector<Vector<Integer>> availableseats;
     public AvailableSeats(Seats seats) {
-
+    	availableseats=seats.seats;
+    	  
     }
 
     public AvailableSeats() {
