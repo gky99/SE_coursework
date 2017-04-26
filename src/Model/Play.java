@@ -22,7 +22,6 @@
 package Model;
 
 import java.time.LocalTime;
-import java.util.Vector;
 
 /**
  * Created by Pauli on 2017/4/7.
@@ -34,7 +33,7 @@ public class Play {
     private static final char[] alphabet = {'A','B','C','D','E'};
 
     Film film;
-    private final CinemaScreen screen = null;
+    private final CinemaScreen screen;
     AvailableSeats seats;
 
     LocalTime startTime;
@@ -48,13 +47,14 @@ public class Play {
      */
     public Play(Film film, CinemaScreen screen, LocalTime startTime) {
 	    this.film = film;
-	    this.screen = screen;
-	    seats = new AvailableSeats(screen);
-	    this.startTime = startTime;
+        this.screen = screen;
+        seats = new AvailableSeats(screen);
+        this.startTime = startTime;
 	    this.price = 16.0;
     }
 
-    public Play() {
+    public Play(CinemaScreen screen) {
+        this.screen = screen;
     }
 
     /**

@@ -64,6 +64,10 @@ public class ShowTable {
      * @param filePath
      */
     private void initCinemaScreens(String filePath) {
+    	for(int i=1;i<=3;i++){
+    		CinemaScreen screen=new CinemaScreen(filePath,i);	
+    		screens.add(screen);
+    	}
     }
 
     /**
