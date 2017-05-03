@@ -49,9 +49,11 @@ public class TimeTable {
 		         });
 	        	
 	        	String[] str = movies.get(n).time.get(i).split(":");
-	        	if(now.get(Calendar.HOUR_OF_DAY)>=Integer.parseInt(str[0])){
-	        		if(now.get(Calendar.MINUTE)>=Integer.parseInt(str[1]))
-	        			timebutton.get(i).setEnabled(false);
+	        	int current = ((now.get(Calendar.HOUR_OF_DAY)*60) + now.get(Calendar.MINUTE));
+	        	int showtime = ((Integer.parseInt(str[0])*60)+Integer.parseInt(str[1]));
+	        	if(current > showtime){
+	        		timebutton.get(i).setEnabled(false);
+
 	        	}
 		 }
 		 
