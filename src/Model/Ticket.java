@@ -31,14 +31,25 @@ public class Ticket {
 
     String ticketType;
     String seat;
+    String studentID;
 
     double ticketPrice;
 
-    public Ticket(Play film, String ticketType, String seat) {
+    public Ticket(Play film, String ticketType, String seat, String studentID) {
+        this.play = film;
+        this.ticketType = ticketType;
+        this.seat = seat;
+        this.studentID = studentID;
+        this.ticketPrice = countPrice(film.price, ticketType);
     }
 
     public Ticket() {
     }
+
+    public Ticket(Play film, String ticketType, String seat) {
+        this(film, ticketType, seat, null);
+    }
+
 
     /**
      * Print ticket into the filePath;
@@ -46,13 +57,30 @@ public class Ticket {
      */
     private void printTicket() {
         String filePath;
+
     }
 
     /**
      * Count the ticket price according to the ticketType
      */
-    public static int countPrice(int price, String ticketType) {
+    public static double countPrice(double price, String ticketType) {
+        if (ticketType.equals("Child")) {
+            price = price / 2;
+        } else if (ticketType.equals("Adult")) {
+
+        } else if (ticketType.equals("Senior")) {
+            price = price * 0.8;
+        } else if (ticketType.equals("Student")) {
+            price = price * 0.85;
+        }
         return price;
+    }
+
+    public void confirm() throws Exception {
+        if (ticketType.equals("Student")) {
+            throw new IllegalArgumentException("Student ticket should contain student ID");
+        }
+        this.ticketPrice = countPrice(this.play.price, this.ticketType);
     }
 
     public static void main(String[] args) {

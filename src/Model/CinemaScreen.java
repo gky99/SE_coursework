@@ -21,12 +21,18 @@
 
 package Model;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.util.Vector;
+
 /**
  * Created by Pauli on 2017/4/7.
  */
 public class CinemaScreen extends Seats {
     int screenNum;
-
+    String filePath;
     /**
      * Initialize the seats into vectors with number of column of the seat
      * read out directly from the file.
@@ -38,7 +44,42 @@ public class CinemaScreen extends Seats {
      *                  The screen info text should be in [filePath]/screen[screenNum].txt
      */
     public CinemaScreen(String filePath, int screenNum) {
-        this.screenNum = screenNum;
+    	this.screenNum = screenNum;
+        this.filePath =  filePath;
+        String path=filePath+"/screen"+screenNum+".txt";
+        File file = new File(path);
+    	Reader reader = null;
+    	
+    	Vector<Vector<Integer>> seats=new Vector<Vector<Integer>>();
+		try {
+               reader = new InputStreamReader(new FileInputStream(file));
+               int tempchar;
+               
+             
+               Vector<Integer> list=new Vector<Integer>() ;
+               while ((tempchar = reader.read()) != -1) {
+            	   
+                   if (((char) tempchar) != '\r'&&((char) tempchar) != '\n'&&((char) tempchar) != ',') {
+                	  
+                	   char a=(char) tempchar;
+                	   int i=a-'0';
+                	   if(i==0)
+                	   list.add(-1);
+                	   else
+                	   list.add(i);
+                	  
+                	  }
+                   if(((char) tempchar) == '\n'){
+                	   seats.add(list);
+                	  
+                	   list=new Vector<Integer>() ;
+                   }
+               }
+               reader.close();
+           } catch (Exception e) {
+               e.printStackTrace();
+           }
+		this.seats=seats;
     }
 
     public CinemaScreen() {

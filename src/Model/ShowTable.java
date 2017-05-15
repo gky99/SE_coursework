@@ -28,7 +28,7 @@ import java.util.ArrayList;
  * Created by Pauli on 2017/4/7.
  */
 public class ShowTable {
-    LocalDate date;
+    static LocalDate date;
 
     ArrayList<Film> films;
     ArrayList<CinemaScreen> screens;
@@ -55,6 +55,7 @@ public class ShowTable {
     		Film.readTime(movie.get(i));         	
         }
     	return movie;
+
     }
 
     /**
@@ -62,7 +63,11 @@ public class ShowTable {
      *
      * @param filePath
      */
-    private void initCinemaScreen(String filePath) {
+    private void initCinemaScreens(String filePath) {
+    	for(int i=1;i<=3;i++){
+    		CinemaScreen screen=new CinemaScreen(filePath,i);	
+    		screens.add(screen);
+    	}
     }
 
     /**
@@ -70,6 +75,6 @@ public class ShowTable {
      *
      * @param filePath
      */
-    private void initPlay(String filePath) {
+    private void initPlays(String filePath) {
     }
 }

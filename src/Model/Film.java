@@ -42,11 +42,13 @@ public class Film {
     public ArrayList<String> place = new ArrayList<String>();
     
     public Film(String filmLength, String movieName, String pathToPicture) {
+
     	this.filmLength = filmLength;
     	this.movieName = movieName;
     	this.pathToPicture = pathToPicture;
     }
     
+
     /*read all movies*/
     public static ArrayList<Film> readMovie(String filePath){
     	String Path = filePath;
@@ -58,6 +60,7 @@ public class Film {
     		
             reader = new BufferedReader(new FileReader(file));
             String movieString = null;
+
 
             while ((movieString = reader.readLine()) != null){
             	String[] str = movieString.split(",");
@@ -108,3 +111,4 @@ public class Film {
           }    	 
      }
 }
+
