@@ -47,6 +47,7 @@ public class TimeTable {
 						
 					} 
 		         });	        	
+
 	        	String[] str = movies.get(n).time.get(i).split(":");
 	        	int current = ((now.get(Calendar.HOUR_OF_DAY)*60) + now.get(Calendar.MINUTE));
 	        	int showtime = ((Integer.parseInt(str[0])*60)+Integer.parseInt(str[1]));

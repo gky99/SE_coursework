@@ -49,6 +49,7 @@ public class Film {
     }
     
 
+
     /*read all movies*/
     public static ArrayList<Film> readMovie(String filePath){
     	String Path = filePath;
@@ -60,7 +61,6 @@ public class Film {
     		
             reader = new BufferedReader(new FileReader(file));
             String movieString = null;
-
 
             while ((movieString = reader.readLine()) != null){
             	String[] str = movieString.split(",");
