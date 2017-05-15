@@ -1,3 +1,5 @@
+import UI.Movies;
+
 /*
  * Copyright (c) 2017, Pauli Guan.
  *
@@ -22,6 +24,7 @@
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+    	 new Movies();
+         Movies.show();
     }
 }
