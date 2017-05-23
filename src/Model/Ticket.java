@@ -24,8 +24,13 @@
  */
 package Model;
 
+import java.io.PrintWriter;
+import java.net.URL;
+
 public class Ticket {
-    private static int ticketNumber;
+    private static int iterationNumber = 0;
+
+    String ticketNumber;
 
     Play play;
 
@@ -51,13 +56,31 @@ public class Ticket {
     }
 
 
+
     /**
      * Print ticket into the filePath;
-     * after each print, the ticketNumber add by 1
+     * after each print, the iterationNumber add by 1
      */
     private void printTicket() {
-        String filePath;
+        this.ticketNumber = Ticket.convertTicketNum(Ticket.iterationNumber++, 8);
+        String filePath = "./tickets/";
 
+        URL ticketPath = Ticket.class.getResource(filePath + this.ticketNumber);
+        try {
+            PrintWriter out = new PrintWriter(ticketPath.getPath());
+            out.println("Ticket Number: " + this.ticketNumber);
+            out.println("Ticket Type: " + this.ticketType);
+            if (this.studentID != null) {
+                out.println("Student ID:" + this.studentID);
+            }
+            out.println("Film Name: " + this.play.film.movieName);
+            out.println("Play Time: " + this.play.startTime);
+            out.println("Screnn: " + this.play.getScreen().screenNum);
+            out.println("Seat: " + this.seat);
+            out.close();
+        } catch (Exception e) {
+
+        }
     }
 
     /**
@@ -84,5 +107,23 @@ public class Ticket {
     }
 
     public static void main(String[] args) {
+        System.out.println(Ticket.convertTicketNum(894, 8));
+    }
+
+    public static String convertTicketNum(int iterationNumber, int i) {
+        if (iterationNumber > 65595) {
+            return null;
+        } else {
+            StringBuilder stringBuilder = new StringBuilder();
+            if (i > 1) {
+                int temp = iterationNumber % 4;
+                int next = iterationNumber / 4;
+                stringBuilder.append(convertTicketNum(next, i - 1));
+                stringBuilder.append(temp + 1);
+                return stringBuilder.toString();
+            } else {
+                return "" + (iterationNumber + 1);
+            }
+        }
     }
 }

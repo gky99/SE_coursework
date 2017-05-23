@@ -74,11 +74,11 @@ public class Play {
      * Reverse process of takeASeat
      */
     private void returnASeat(String seat) {
-	    int row = new Play().AtoI(seat.charAt(0));
-	    int col = Integer.parseInt(String.valueOf(seat.charAt(1)));
-	    if( seats.seats.get(row-1).get(col-1) == 0 ){
-		    seats.seats.get(row-1).setElementAt(1,col-1);
-	    }
+//	    int row = new Play().AtoI(seat.charAt(0));
+//	    int col = Integer.parseInt(String.valueOf(seat.charAt(1)));
+//	    if( seats.seats.get(row-1).get(col-1) == 0 ){
+//		    seats.seats.get(row-1).setElementAt(1,col-1);
+//	    }
     }
 
     /**
@@ -101,4 +101,7 @@ public class Play {
 	    return -1;
     }
 
+    public CinemaScreen getScreen() {
+        return screen;
+    }
 }
