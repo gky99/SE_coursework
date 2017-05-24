@@ -21,9 +21,31 @@
 
 package Model;
 
+import java.io.PrintWriter;
+import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Created by Pauli on 2017/4/7.
  */
 public class Report {
-    
+    private PrintWriter out = null;
+
+    private PrintWriter open() {
+        Date now = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yy-MM-dd");
+        String filePath = "./report/" + dateFormat.format(now);
+
+        URL reportPath = Report.class.getResource(filePath);
+        try {
+            PrintWriter out = new PrintWriter(reportPath.getPath());
+            return out;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+
+
 }
