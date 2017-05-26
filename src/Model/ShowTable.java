@@ -21,25 +21,30 @@
 
 package Model;
 
+import UI.*;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
-
 /**
  * Created by Pauli on 2017/4/7.
  */
 public class ShowTable {
-    LocalDate date;
+    static LocalDate date;
 
-    ArrayList<Film> films;
-    ArrayList<CinemaScreen> screens;
+    public static ArrayList<Film> films;
+    public static ArrayList<CinemaScreen> screens;
 
-    ArrayList<Play> plays;
+    public static ArrayList<Play> plays;
 
     /**
      * Initialize the date to today,
      * and all other variable according to text files.
      */
     public ShowTable() {
+        //initFilms("./Movie/Movie.txt");
+        screens = new ArrayList<CinemaScreen>();
+        initCinemaScreens("F:\\SE_coursework\\out\\production\\SE_coursework\\Avalibleseats");
+
     }
 
     /**
@@ -47,7 +52,29 @@ public class ShowTable {
      *
      * @param filePath
      */
-    private void initFilms(String filePath) {
+
+    public static ArrayList<Film> initFilms(String filePath) {
+    	ArrayList<Film> movie = new ArrayList<Film>();
+    	movie = Film.readMovie(filePath);
+    	
+    	for (int i = 0; movie.get(i)!= null;i++){
+    		Film.readTime(movie.get(i));         	
+        }
+    	return movie;
+
+    }
+    
+
+    /**
+     * Initialize films according to text files
+     *
+     * @param filePath
+     */
+    private void initCinemaScreens(String filePath) {
+    	for(int i=1;i<=3;i++){
+    		CinemaScreen screen=new CinemaScreen(filePath,i);	
+    		screens.add(screen);
+    	}
     }
 
     /**
@@ -55,14 +82,14 @@ public class ShowTable {
      *
      * @param filePath
      */
-    private void initCinemaScreen(String filePath) {
+    private void initPlays(String filePath) {
     }
+    public static void main(String args[]){
+        Film film=new Film("120","Lalaland","./");
+        ShowTable st=new ShowTable();
+        Play play=new Play(film, ShowTable.screens.get(1),LocalTime.now());
+      SelectSeats se= new  SelectSeats();
+      se.initiate(play);
 
-    /**
-     * Initialize films according to text files
-     *
-     * @param filePath
-     */
-    private void initPlay(String filePath) {
     }
 }
