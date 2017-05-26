@@ -61,7 +61,7 @@ public class Ticket {
      * Print ticket into the filePath;
      * after each print, the iterationNumber add by 1
      */
-    private void printTicket() {
+    public void printTicket() {
         this.ticketNumber = Ticket.convertTicketNum(Ticket.iterationNumber++, 8);
         String filePath = "./tickets/";
 
@@ -81,6 +81,7 @@ public class Ticket {
         } catch (Exception e) {
 
         }
+        System.out.println(this.ticketNumber+"type"+this.ticketType+this.studentID);
     }
 
     /**

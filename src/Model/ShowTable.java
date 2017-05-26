@@ -21,7 +21,9 @@
 
 package Model;
 
+import UI.*;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 /**
  * Created by Pauli on 2017/4/7.
@@ -40,7 +42,8 @@ public class ShowTable {
      */
     public ShowTable() {
         //initFilms("./Movie/Movie.txt");
-        initCinemaScreens("./Avalibleseats");
+        screens = new ArrayList<CinemaScreen>();
+        initCinemaScreens("F:\\SE_coursework\\out\\production\\SE_coursework\\Avalibleseats");
 
     }
 
@@ -82,7 +85,11 @@ public class ShowTable {
     private void initPlays(String filePath) {
     }
     public static void main(String args[]){
+        Film film=new Film("120","Lalaland","./");
         ShowTable st=new ShowTable();
+        Play play=new Play(film, ShowTable.screens.get(1),LocalTime.now());
+      SelectSeats se= new  SelectSeats();
+      se.initiate(play);
 
     }
 }
