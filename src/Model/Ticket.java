@@ -86,7 +86,7 @@ public class Ticket {
             }
             outputStreamWriter.append("Film Name: " + this.play.film.movieName);
             outputStreamWriter.append("Play Time: " + this.play.startTime);
-            outputStreamWriter.append("Screnn: " + this.play.getScreen().screenNum);
+            outputStreamWriter.append("Screnn: " + this.play.screen.screenNum);
             outputStreamWriter.append("Seat: " + this.seat);
             outputStreamWriter.close();
         } catch (Exception e) {
