@@ -40,6 +40,9 @@ public class ShowTable {
      * and all other variable according to text files.
      */
     public ShowTable() {
+        initFilms("./Movie/Movie.txt");
+        initCinemaScreens("./Avalibleseats");
+
     }
 
     /**
