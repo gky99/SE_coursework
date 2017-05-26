@@ -1,20 +1,13 @@
 package UI;
 
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
-import java.awt.Image;
+import Model.Film;
+import Model.ShowTable;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-
-import Model.Film;
-import Model.ShowTable;
 
 public class Movies {
 

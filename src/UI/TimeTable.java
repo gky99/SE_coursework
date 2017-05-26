@@ -1,20 +1,14 @@
 package UI;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.GridLayout;
+import Model.Film;
+import Model.ShowTable;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Calendar;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-
-import Model.Film;
-import Model.ShowTable;
 
 public class TimeTable {
 	
@@ -44,7 +38,7 @@ public class TimeTable {
 								break;
 						}
 						mFrame.dispose();    //for next UI
-						
+
 					} 
 		         });	        	
 

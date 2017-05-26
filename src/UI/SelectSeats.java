@@ -21,7 +21,10 @@
 
 package UI;
 
-import Model.*;
+import Model.AvailableSeats;
+import Model.ShowTable;
+
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -30,13 +33,8 @@ import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.Random;
-import javax.swing.*;
 /**
  * Created by gky on 2017/5/26.
  */
