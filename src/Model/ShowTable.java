@@ -40,7 +40,7 @@ public class ShowTable {
      * and all other variable according to text files.
      */
     public ShowTable() {
-        initFilms("./Movie/Movie.txt");
+        //initFilms("./Movie/Movie.txt");
         initCinemaScreens("./Avalibleseats");
 
     }
@@ -50,6 +50,7 @@ public class ShowTable {
      *
      * @param filePath
      */
+
     public static ArrayList<Film> initFilms(String filePath) {
     	ArrayList<Film> movie = new ArrayList<Film>();
     	movie = Film.readMovie(filePath);
@@ -80,5 +81,9 @@ public class ShowTable {
      * @param filePath
      */
     private void initPlays(String filePath) {
+    }
+    public static void main(String args[]){
+        ShowTable st=new ShowTable();
+
     }
 }
