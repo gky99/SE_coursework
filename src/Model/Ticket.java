@@ -24,13 +24,21 @@
  */
 package Model;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class Ticket {
+    /**
+     * An auto increase variable to generate ticket number.
+     */
     private static int iterationNumber = 0;
-
     String ticketNumber;
+
+    public static ArrayList<Ticket> tickets = new ArrayList();
 
     Play play;
 
@@ -63,25 +71,28 @@ public class Ticket {
      */
     public void printTicket() {
         this.ticketNumber = Ticket.convertTicketNum(Ticket.iterationNumber++, 8);
-        String filePath = "./tickets/";
+        String filePath = "C:\\Users\\Administrator\\Desktop\\ticket";
 
-        URL ticketPath = Ticket.class.getResource(filePath + this.ticketNumber);
         try {
-            PrintWriter out = new PrintWriter(ticketPath.getPath());
-            out.println("Ticket Number: " + this.ticketNumber);
-            out.println("Ticket Type: " + this.ticketType);
+            File file = new File(filePath + this.ticketNumber);
+            FileOutputStream fileOutputStream = new FileOutputStream(file);
+
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream, "UTF-8");
+
+            outputStreamWriter.append("Ticket Number: " + this.ticketNumber);
+            outputStreamWriter.append("Ticket Type: " + this.ticketType);
             if (this.studentID != null) {
-                out.println("Student ID:" + this.studentID);
+                outputStreamWriter.append("Student ID:" + this.studentID);
             }
-            out.println("Film Name: " + this.play.film.movieName);
-            out.println("Play Time: " + this.play.startTime);
-            out.println("Screnn: " + this.play.getScreen().screenNum);
-            out.println("Seat: " + this.seat);
-            out.close();
+            outputStreamWriter.append("Film Name: " + this.play.film.movieName);
+            outputStreamWriter.append("Play Time: " + this.play.startTime);
+            outputStreamWriter.append("Screnn: " + this.play.getScreen().screenNum);
+            outputStreamWriter.append("Seat: " + this.seat);
+            outputStreamWriter.close();
         } catch (Exception e) {
 
         }
-        System.out.println(this.ticketNumber+"type"+this.ticketType+this.studentID);
+        Ticket.tickets.add(this);
     }
 
     /**
@@ -100,6 +111,9 @@ public class Ticket {
         return price;
     }
 
+    /**
+     * Check the legality of the ticket.
+     */
     public void confirm() throws Exception {
         if (ticketType.equals("Student")) {
             throw new IllegalArgumentException("Student ticket should contain student ID");
@@ -111,6 +125,9 @@ public class Ticket {
         System.out.println(Ticket.convertTicketNum(894, 8));
     }
 
+    /**
+     * Convert the iteration number into a ticket number in String type.
+     */
     public static String convertTicketNum(int iterationNumber, int i) {
         if (iterationNumber > 65595) {
             return null;

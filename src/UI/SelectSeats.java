@@ -164,14 +164,17 @@ public class SelectSeats {
                 f.setText("");
                 int index=rowindex.size()-1;
                 button[rowindex.get(index)][colindex.get(index)].setBackground(Color.blue);
+                duplicate[rowindex.get(index)][colindex.get(index)]=0;
                 selectedlist.remove(index);
                 rowindex.remove(index);
                 colindex.remove(index);
                 totalprice-=perprice*0.85;
+
                 for (int m=0; m<selectedlist.size();m++){
                     selectedstring = selectedstring + selectedlist.get(m);
                 }
                 selected.setText("The Seats selected: " + selectedstring);
+                selectedstring = "";
                 priceAmount.setText("Total Ticket Price: "+String.format("%.2f",totalprice));
             }
 
@@ -280,12 +283,28 @@ public class SelectSeats {
                                         selectedstring = selectedstring + selectedlist.get(m);
                                     }
                                     selected.setText("The Seats selected: " + selectedstring);
+                                    selectedstring = "";
                                     bi=i;
                                     bj=j;
                                     Point p = e.getPoint();
                                     menu.show(e.getComponent(), p.x, p.y);
+                                    /*if(!enter){
+                                        int index=rowindex.size()-1;
+                                        button[rowindex.get(index)][colindex.get(index)].setBackground(Color.blue);
+                                        duplicate[rowindex.get(index)][colindex.get(index)]=0;
+                                        selectedlist.remove(index);
+                                        rowindex.remove(index);
+                                        colindex.remove(index);
+                                        totalprice-=perprice;
+                                        for (int m=0; m<selectedlist.size();m++){
+                                            selectedstring = selectedstring + selectedlist.get(m);
+                                        }
+                                        selected.setText("The Seats selected: " + selectedstring);
+                                        selectedstring = "";
+                                        priceAmount.setText("Total Ticket Price: "+String.format("%.2f",totalprice));
+                                        enter=false;
+                                    }*/
 
-                                    selectedstring = "";
                                 }
                                 else if(e.getSource()==button[i][j] && button[i][j].getText()!="--"&&duplicate[i][j] == 1){
                                     for (int search=0; search < rowindex.size(); search++){
@@ -438,6 +457,8 @@ public class SelectSeats {
                 totalprice+=perprice*0.5;
                 stuidlist.add("null");
                 success=false;
+
+
 
             }
             if (e.getSource() == item2&&success) {
