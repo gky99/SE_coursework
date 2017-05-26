@@ -27,10 +27,10 @@ public class Movies {
         
         mScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         
-		new ShowTable();
-		movies = ShowTable.initFilms("./src/Movie/Movie.txt");
-        mpanel.setLayout(new GridLayout((movies.size()-1),4));
-        for(int i=0; i < (movies.size()-1);i++){
+
+		movies = ShowTable.films;
+        mpanel.setLayout(new GridLayout(movies.size(),4));
+        for(int i=0; i < movies.size();i++){
 
         	ImageIcon image = new ImageIcon(movies.get(i).pathToPicture);
         	Image mimage = null; 
@@ -43,11 +43,12 @@ public class Movies {
         	buybutton.get(i).addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent e){
 					int n = 0;
-					for(n=0;n<6;n++){
+					for(n=0;n<5;n++){
 						if(e.getSource() == buybutton.get(n))
 							break;
 					}
 					mFrame.dispose();
+				//	ShowTable.plays.add(new Play(ShowTable.films.get(n),ShowTable.screens.get()))
 					new TimeTable();
 					TimeTable.show(n);
 				} 
