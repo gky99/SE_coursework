@@ -21,7 +21,7 @@
 
 package Model;
 
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -32,36 +32,43 @@ import java.util.Map;
  * Created by Pauli on 2017/4/7.
  */
 public class Report {
-    private PrintWriter out = null;
+    private OutputStreamWriter out = null;
 
     /**
      * Open an print writer and save it in out.
      */
-    private PrintWriter open() {
+    private OutputStreamWriter open() {
         Date now = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yy-MM-dd");
         String filePath = "./report/" + dateFormat.format(now);
 
-        URL reportPath = Report.class.getResource(filePath);
         try {
-            PrintWriter out = new PrintWriter(reportPath.getPath());
-            return out;
+            File file = new File(filePath);
+            FileOutputStream fileOutputStream = new FileOutputStream(file);
+
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream, "UTF-8");
+
+            return outputStreamWriter;
         } catch (Exception e) {
             return null;
         }
     }
 
     public Report() {
-        open();
-        filmStatistic();
-        out.close();
+        try {
+            open();
+            filmStatistic();
+            out.close();
+        } catch (IOException e) {
+
+        }
     }
 
 
     /**
      * Print the sale statistic.
      */
-    private void filmStatistic() {
+    private void filmStatistic() throws IOException{
         int total = 0;
         Map<String, Integer> types = new HashMap<String, Integer>(4);
         types.put("Child", 0);
@@ -81,15 +88,15 @@ public class Report {
                     }
                 }
             }
-            out.println("Movie: " + film.movieName);
-            out.println("Sales: " + count);
-            out.println();
+            out.append("Movie: " + film.movieName);
+            out.append("Sales: " + count);
+            out.append("\n");
             total += count;
         }
         for (Map.Entry<String, Integer> type : types.entrySet()) {
-            out.println(type.getKey() + "ticket: " + type.getValue());
+            out.append(type.getKey() + "ticket: " + type.getValue());
         }
-        out.println("Total sale: " + total);
+        out.append("Total sale: " + total);
     }
 
 
