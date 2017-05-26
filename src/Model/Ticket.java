@@ -24,6 +24,9 @@
  */
 package Model;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.URL;
 import java.util.ArrayList;
@@ -70,19 +73,22 @@ public class Ticket {
         this.ticketNumber = Ticket.convertTicketNum(Ticket.iterationNumber++, 8);
         String filePath = "./tickets/";
 
-        URL ticketPath = Ticket.class.getResource(filePath + this.ticketNumber);
         try {
-            PrintWriter out = new PrintWriter(ticketPath.getPath());
-            out.println("Ticket Number: " + this.ticketNumber);
-            out.println("Ticket Type: " + this.ticketType);
+            File file = new File(filePath + this.ticketNumber);
+            FileOutputStream fileOutputStream = new FileOutputStream(file);
+
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream, "UTF-8");
+
+            outputStreamWriter.append("Ticket Number: " + this.ticketNumber);
+            outputStreamWriter.append("Ticket Type: " + this.ticketType);
             if (this.studentID != null) {
-                out.println("Student ID:" + this.studentID);
+                outputStreamWriter.append("Student ID:" + this.studentID);
             }
-            out.println("Film Name: " + this.play.film.movieName);
-            out.println("Play Time: " + this.play.startTime);
-            out.println("Screnn: " + this.play.getScreen().screenNum);
-            out.println("Seat: " + this.seat);
-            out.close();
+            outputStreamWriter.append("Film Name: " + this.play.film.movieName);
+            outputStreamWriter.append("Play Time: " + this.play.startTime);
+            outputStreamWriter.append("Screnn: " + this.play.getScreen().screenNum);
+            outputStreamWriter.append("Seat: " + this.seat);
+            outputStreamWriter.close();
         } catch (Exception e) {
 
         }
