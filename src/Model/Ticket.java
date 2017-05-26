@@ -26,9 +26,11 @@ package Model;
 
 import java.io.PrintWriter;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class Ticket {
     private static int iterationNumber = 0;
+    public static ArrayList<Ticket> tickets = new ArrayList();
 
     String ticketNumber;
 
@@ -81,6 +83,7 @@ public class Ticket {
         } catch (Exception e) {
 
         }
+        Ticket.tickets.add(this);
     }
 
     /**
