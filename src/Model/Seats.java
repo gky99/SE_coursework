@@ -30,5 +30,5 @@ public abstract class Seats {
     /**
      * represent seats in vector
      * */
-    Vector<Vector<Integer>> seats;
+    public Vector<Vector<Integer>> seats;
 }
