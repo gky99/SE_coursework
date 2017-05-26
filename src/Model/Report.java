@@ -34,6 +34,9 @@ import java.util.Map;
 public class Report {
     private PrintWriter out = null;
 
+    /**
+     * Open an print writer and save it in out.
+     */
     private PrintWriter open() {
         Date now = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yy-MM-dd");
@@ -54,6 +57,10 @@ public class Report {
         out.close();
     }
 
+
+    /**
+     * Print the sale statistic.
+     */
     private void filmStatistic() {
         int total = 0;
         Map<String, Integer> types = new HashMap<String, Integer>(4);

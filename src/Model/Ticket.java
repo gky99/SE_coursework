@@ -29,10 +29,13 @@ import java.net.URL;
 import java.util.ArrayList;
 
 public class Ticket {
+    /**
+     * An auto increase variable to generate ticket number.
+     */
     private static int iterationNumber = 0;
-    public static ArrayList<Ticket> tickets = new ArrayList();
-
     String ticketNumber;
+
+    public static ArrayList<Ticket> tickets = new ArrayList();
 
     Play play;
 
@@ -102,6 +105,9 @@ public class Ticket {
         return price;
     }
 
+    /**
+     * Check the legality of the ticket.
+     */
     public void confirm() throws Exception {
         if (ticketType.equals("Student")) {
             throw new IllegalArgumentException("Student ticket should contain student ID");
@@ -113,6 +119,9 @@ public class Ticket {
         System.out.println(Ticket.convertTicketNum(894, 8));
     }
 
+    /**
+     * Convert the iteration number into a ticket number in String type.
+     */
     public static String convertTicketNum(int iterationNumber, int i) {
         if (iterationNumber > 65595) {
             return null;
