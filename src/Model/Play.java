@@ -30,13 +30,12 @@ public class Play {
     /**
      * An alphabet list helped to trans row number to alphabets
      */
-    private static final char[] alphabet = {'A','B','C','D','E'};
-
-    public Film film;
+    private static final char[] alphabet = {'A', 'B', 'C', 'D', 'E'};
     private final CinemaScreen screen;
+    public Film film;
     public AvailableSeats seats;
 
-    LocalTime startTime;
+    public LocalTime startTime;
 //    LocalTime endTime;
 
     double price;
@@ -46,11 +45,11 @@ public class Play {
      * and init all other variables.
      */
     public Play(Film film, CinemaScreen screen, LocalTime startTime) {
-	    this.film = film;
+        this.film = film;
         this.screen = screen;
         seats = new AvailableSeats(screen);
         this.startTime = startTime;
-	    this.price = 16.0;
+        this.price = 16.0;
     }
 
     public Play(CinemaScreen screen) {
@@ -63,42 +62,41 @@ public class Play {
      * @return the seat mark like: A6, G8
      */
     private String takeASeat(int row, int col) {
-	    if( seats.seats.get(row-1).get(col-1) == 1 ){
-		    seats.seats.get(row-1).setElementAt(0,col-1);
-		    return alphabet[row-1]+""+col;
-	    }
-	    else return ""+-1;
+        if (seats.seats.get(row - 1).get(col - 1) == 1) {
+            seats.seats.get(row - 1).setElementAt(0, col - 1);
+            return alphabet[row - 1] + "" + col;
+        } else return "" + -1;
     }
 
     /**
      * Reverse process of takeASeat
      */
     private void returnASeat(String seat) {
-//	    int row = new Play().AtoI(seat.charAt(0));
-//	    int col = Integer.parseInt(String.valueOf(seat.charAt(1)));
-//	    if( seats.seats.get(row-1).get(col-1) == 0 ){
-//		    seats.seats.get(row-1).setElementAt(1,col-1);
-//	    }
+        int row = this.AtoI(seat.charAt(0));
+        int col = Integer.parseInt(String.valueOf(seat.charAt(1)));
+        if (seats.seats.get(row - 1).get(col - 1) == 0) {
+            seats.seats.get(row - 1).setElementAt(1, col - 1);
+        }
     }
 
     /**
      * Transform the row number to alphabets
      */
     private char ItoA(int row) {
-	    return alphabet[row-1];
+        return alphabet[row - 1];
     }
 
     /**
      * Transform the row mark to row number
      */
     private int AtoI(char mark) {
-	    int i;
-	    for( i=0; i<=4; i++){
-		    if( alphabet[i] == mark ){
-			    return i+1;
-		    }
-	    }
-	    return -1;
+        int i;
+        for (i = 0; i <= 4; i++) {
+            if (alphabet[i] == mark) {
+                return i + 1;
+            }
+        }
+        return -1;
     }
 
     public CinemaScreen getScreen() {

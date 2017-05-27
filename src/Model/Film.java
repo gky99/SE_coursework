@@ -36,79 +36,46 @@ public class Film {
     public String movieName;
 
     public String pathToPicture;
-    
-    public ArrayList<String> time = new ArrayList<String>();
-    
-    public ArrayList<String> place = new ArrayList<String>();
-    
+
+
     public Film(String filmLength, String movieName, String pathToPicture) {
 
-    	this.filmLength = filmLength;
-    	this.movieName = movieName;
-    	this.pathToPicture = pathToPicture;
+        this.filmLength = filmLength;
+        this.movieName = movieName;
+        this.pathToPicture = pathToPicture;
     }
-    
 
 
     /*read all movies*/
-    public static ArrayList<Film> readMovie(String filePath){
-    	String Path = filePath;
-    	File file = new File(Path);
-    	ArrayList<Film> film = new ArrayList<Film>();
-    	BufferedReader reader = null;
-    	
-    	try {
-    		
+    public static ArrayList<Film> readMovie(String filePath) {
+        String Path = filePath;
+        File file = new File(Path);
+        ArrayList<Film> film = new ArrayList<Film>();
+        BufferedReader reader = null;
+
+        try {
+
             reader = new BufferedReader(new FileReader(file));
             String movieString = null;
 
-            while ((movieString = reader.readLine()) != null){
-            	String[] str = movieString.split(",");
-            	film.add(new Film(str[1],str[0],str[2])); 
-             }
-             reader.close();
-             film.add(null);
-         } catch (IOException e) {
-             e.printStackTrace();
-         } finally {
-             if (reader != null) {
-                 try {
-                     reader.close();
-                 } catch (IOException e1) {
-                 }
-             }
-         }
-    	return film;
-     }
+            while ((movieString = reader.readLine()) != null) {
+                String[] str = movieString.split(",");
+                film.add(new Film(str[1], str[0], str[2]));
 
-     public static void readTime(Film film){
-    	File file = new File("./src/Movie/"+ film.movieName +".txt");
-    	 //File file = new File("./src/Movie/KONG SKULL ISLAND.txt");
-    	 
-     	BufferedReader reader = null;
-     	
-     	try {    		
-             reader = new BufferedReader(new FileReader(file));
-             String movieString = null;
+            }
 
-             while ((movieString = reader.readLine()) != null){
-             	String[] str = movieString.split(",");
-             	film.time.add(str[0]);
-             	film.place.add(str[1]);
-              }
-              reader.close();
-              film.time.add(null);
-           	  film.place.add(null);              
-          } catch (IOException e) {
-              e.printStackTrace();
-          } finally {
-              if (reader != null) {
-                  try {
-                      reader.close();
-                  } catch (IOException e1) {
-                  }
-              }
-          }    	 
-     }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e1) {
+                }
+            }
+        }
+        return film;
+    }
 }
 

@@ -29,6 +29,6 @@ import java.util.Vector;
 public abstract class Seats {
     /**
      * represent seats in vector
-     * */
+     */
     public Vector<Vector<Integer>> seats;
 }
