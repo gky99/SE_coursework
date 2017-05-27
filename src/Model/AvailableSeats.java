@@ -34,9 +34,9 @@ public class AvailableSeats extends Seats {
      *
      * @param seats initialize the availableSeats according to existing seat vector.
      */
-	Vector<Vector<Integer>> availableseats;
+
     public AvailableSeats(Seats seats) {
-    	availableseats=seats.seats;
+    	this.seats=seats.seats;
     	  
     }
 

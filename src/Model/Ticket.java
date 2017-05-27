@@ -27,8 +27,6 @@ package Model;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
-import java.net.URL;
 import java.util.ArrayList;
 
 public class Ticket {
@@ -69,7 +67,7 @@ public class Ticket {
      * Print ticket into the filePath;
      * after each print, the iterationNumber add by 1
      */
-    private void printTicket() {
+    public void printTicket() {
         this.ticketNumber = Ticket.convertTicketNum(Ticket.iterationNumber++, 8);
         String filePath = "./tickets/";
 
@@ -86,7 +84,7 @@ public class Ticket {
             }
             outputStreamWriter.append("Film Name: " + this.play.film.movieName);
             outputStreamWriter.append("Play Time: " + this.play.startTime);
-            outputStreamWriter.append("Screnn: " + this.play.screen.screenNum);
+            outputStreamWriter.append("Screnn: " + this.play.getScreen().screenNum);
             outputStreamWriter.append("Seat: " + this.seat);
             outputStreamWriter.close();
         } catch (Exception e) {

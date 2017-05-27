@@ -21,9 +21,6 @@
 
 package Model;
 
-import com.sun.org.apache.bcel.internal.generic.NEW;
-import javafx.stage.Screen;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
