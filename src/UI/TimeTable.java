@@ -62,7 +62,8 @@ public class TimeTable {
 							}
 							mFrame.dispose();//for next UI
 							Play forNext = ShowTable.plays.get(timebutton.get(n).getTime());
-
+							SelectSeats selectSeats = new SelectSeats();
+							selectSeats.initiate(forNext);
 						}
 					});
 
