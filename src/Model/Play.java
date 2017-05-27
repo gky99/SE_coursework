@@ -32,9 +32,9 @@ public class Play {
      */
     private static final char[] alphabet = {'A','B','C','D','E'};
 
-    Film film;
+    public Film film;
     private final CinemaScreen screen;
-    AvailableSeats seats;
+    public AvailableSeats seats;
 
     LocalTime startTime;
 //    LocalTime endTime;

@@ -21,7 +21,9 @@
 
 package Model;
 
+import UI.*;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 /**
  * Created by Pauli on 2017/4/7.
@@ -39,6 +41,10 @@ public class ShowTable {
      * and all other variable according to text files.
      */
     public ShowTable() {
+        //initFilms("./Movie/Movie.txt");
+        screens = new ArrayList<CinemaScreen>();
+        initCinemaScreens("F:\\SE_coursework\\out\\production\\SE_coursework\\Avalibleseats");
+
     }
 
     /**
@@ -46,6 +52,7 @@ public class ShowTable {
      *
      * @param filePath
      */
+
     public static ArrayList<Film> initFilms(String filePath) {
     	ArrayList<Film> movie = new ArrayList<Film>();
     	movie = Film.readMovie(filePath);
@@ -76,5 +83,13 @@ public class ShowTable {
      * @param filePath
      */
     private void initPlays(String filePath) {
+    }
+    public static void main(String args[]){
+        Film film=new Film("120","Lalaland","./");
+        ShowTable st=new ShowTable();
+        Play play=new Play(film, ShowTable.screens.get(1),LocalTime.now());
+      SelectSeats se= new  SelectSeats();
+      se.initiate(play);
+
     }
 }

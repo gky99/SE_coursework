@@ -21,30 +21,30 @@
 
 package UI;
 
-import Model.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Random;
-import javax.swing.*;
+
 /**
- * Created by gky on 2017/5/26.
+ * Created by Administrator on 2017/5/26.
  */
 
+        import  Model.*;
+        import java.awt.*;
+        import java.awt.event.ActionEvent;
+        import java.awt.event.ActionListener;
+        import java.awt.event.MouseEvent;
+        import java.awt.event.MouseListener;
+        import java.io.File;
+        import java.io.FileWriter;
+        import java.io.IOException;
+        import java.util.ArrayList;
+        import java.util.HashMap;
+        import java.util.Iterator;
+        import java.util.Map;
+        import java.util.Map.Entry;
+        import java.util.Random;
+
+        import javax.swing.*;
+
 public class SelectSeats {
-
-
-
     AvailableSeats available;	//存seats的对象
     JFrame frame;				//最外面的框
     JPanel panel,p1;			//panel面板上放的是座位图，p1面板上放的是座位图下面的东西
@@ -84,7 +84,7 @@ public class SelectSeats {
     static HashMap<JButton, Integer> typerecord = new HashMap<JButton,Integer >();
     int bi,bj;
 
-    String stuid;
+    ArrayList<String> stuidlist=new ArrayList<String>();
     JPanel inputid=new JPanel();
     JLabel input=new JLabel("please input your student id:");
     JLabel noinput=new JLabel("empty input");
@@ -92,13 +92,8 @@ public class SelectSeats {
     JButton idconfirm ;
     JButton cancel ;
     Dialog d=new Dialog(frame, "please input your student id", success);
-    public void initiate(){
-        //【重要】
-        //我拉下来的AvailableSeats像是没有写过的，所以下面这行代码使用了假的availableseats类
-        //下面这行代码的作用是初始化AvailableSeats的对象available
-        //使得available.seats这个二维vector拥有正确的值
-
-        new ShowTable;
+    public void initiate(Play play){
+        available =play.seats;
         item1.addActionListener(menuactionListener);
         item2.addActionListener(menuactionListener);
         item3.addActionListener(menuactionListener);
@@ -107,7 +102,7 @@ public class SelectSeats {
         menu.add(item2);
         menu.add(item3);
         menu.add(item4);
-        available = new AvailableSeats("filepath",2);
+        //available = new AvailableSeats("filepath",2);
         d.setBounds(300, 150, 350, 150);
         f.setBounds(150, 150, 200, 150);
         d.setLayout(new FlowLayout());
@@ -125,8 +120,7 @@ public class SelectSeats {
             @Override
             public void mousePressed(MouseEvent e) {
                 if(f.getText().length()!=0){
-                    stuid= f.getText();
-                    System.out.println(stuid);
+                    stuidlist.add(f.getText());
                     d.setVisible(false);
                     f.setText("");
                 }
@@ -168,7 +162,20 @@ public class SelectSeats {
             public void mousePressed(MouseEvent e) {
                 d.setVisible(false);
                 f.setText("");
+                int index=rowindex.size()-1;
+                button[rowindex.get(index)][colindex.get(index)].setBackground(Color.blue);
+                duplicate[rowindex.get(index)][colindex.get(index)]=0;
+                selectedlist.remove(index);
+                rowindex.remove(index);
+                colindex.remove(index);
+                totalprice-=perprice*0.85;
 
+                for (int m=0; m<selectedlist.size();m++){
+                    selectedstring = selectedstring + selectedlist.get(m);
+                }
+                selected.setText("The Seats selected: " + selectedstring);
+                selectedstring = "";
+                priceAmount.setText("Total Ticket Price: "+String.format("%.2f",totalprice));
             }
 
             @Override
@@ -198,9 +205,8 @@ public class SelectSeats {
         panel = new JPanel();
         panel.setBounds(0,0,800,300);//panel上是座位图，panel位于0,0 大小800,300
         panel.setBackground(new Color(255,255,255));
-        panel.setLayout(new GridLayout(available.seats.size(), available.seats.get(0).size(),24,24));//panel是表格布局
+        panel.setLayout(new GridLayout(play.seats.seats.size(), play.seats.seats.get(0).size(),24,24));//panel是表格布局
         frame.add(panel);
-
         p1 = new JPanel();
         p1.setBounds(0, 300, 800, 300);//p1上是余下信息，p1位于0,300 大小800,300
         p1.setBackground(new Color(255,255,255));
@@ -222,8 +228,8 @@ public class SelectSeats {
         priceAmount.setBounds(0,50,800,50);//价格的位置位于p1的0,50 大小800,50
         p1.add(priceAmount);
 
-        button=new JButton[available.seats.size()][available.seats.get(0).size()];
-        for (int i=available.seats.size()-1; i>=0; i--){
+        button=new JButton[play.seats.seats.size()][play.seats.seats.get(0).size()];
+        for (int i=play.seats.seats.size()-1; i>=0; i--){
             count=1;
             row1[i] = new JLabel();
             row1[i].setText("     "+alphabet[i]);
@@ -277,18 +283,35 @@ public class SelectSeats {
                                         selectedstring = selectedstring + selectedlist.get(m);
                                     }
                                     selected.setText("The Seats selected: " + selectedstring);
+                                    selectedstring = "";
                                     bi=i;
                                     bj=j;
                                     Point p = e.getPoint();
                                     menu.show(e.getComponent(), p.x, p.y);
+                                    /*if(!enter){
+                                        int index=rowindex.size()-1;
+                                        button[rowindex.get(index)][colindex.get(index)].setBackground(Color.blue);
+                                        duplicate[rowindex.get(index)][colindex.get(index)]=0;
+                                        selectedlist.remove(index);
+                                        rowindex.remove(index);
+                                        colindex.remove(index);
+                                        totalprice-=perprice;
+                                        for (int m=0; m<selectedlist.size();m++){
+                                            selectedstring = selectedstring + selectedlist.get(m);
+                                        }
+                                        selected.setText("The Seats selected: " + selectedstring);
+                                        selectedstring = "";
+                                        priceAmount.setText("Total Ticket Price: "+String.format("%.2f",totalprice));
+                                        enter=false;
+                                    }*/
 
-                                    selectedstring = "";
                                 }
                                 else if(e.getSource()==button[i][j] && button[i][j].getText()!="--"&&duplicate[i][j] == 1){
                                     for (int search=0; search < rowindex.size(); search++){
                                         if (rowindex.get(search)==i&&colindex.get(search)==j){
                                             rowindex.remove(search);
                                             colindex.remove(search);
+                                            stuidlist.remove(search);
                                         }
                                     }
                                     duplicate[i][j] = 0;
@@ -376,28 +399,20 @@ public class SelectSeats {
             public void mousePressed(MouseEvent arg0) {
 
                 for(int i=0;i<selectedlist.size();i++){
-                    try {
-                        String path = "ticket";
-                        File f = new File(path);
-                        if(!f.exists()){
-                            f.mkdirs();
-                        }
-                        String filename="ticket"+i+".txt";
-                        File file=new File(f,filename);
-                        if(!file.exists()){
-                            file.createNewFile();
-                        }
-                        FileWriter fw=new FileWriter(file);
-                        fw.write(generateid());
-                        fw.write("\t");
-                        fw.write(selectedlist.get(i));
-                        fw.write("\t");
-                        fw.flush();
-                        fw.close();
-                    } catch (IOException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
+                   int r=rowindex.get(i);
+                   int c=colindex.get(i);
+                   String inputtickettype=typerecord.get(button[r][c])+"";
+                   switch(inputtickettype){
+                       case "1":inputtickettype = "Child";break;
+                       case "2":inputtickettype = "Adult";break;
+                       case "3":inputtickettype = "Senior";break;
+                       case "4":inputtickettype = "Student";break;
+                       default:inputtickettype = "Error";
+                   }
+                   String inputseat=selectedlist.get(i);
+                   String inputid=stuidlist.get(i);
+                   Ticket ticket=new Ticket(play,inputtickettype,inputseat,inputid);
+                   ticket.printTicket();
                 }
 
             }
@@ -440,13 +455,17 @@ public class SelectSeats {
                 type=1;
                 totalprice-=perprice;
                 totalprice+=perprice*0.5;
+                stuidlist.add("null");
                 success=false;
+
+
 
             }
             if (e.getSource() == item2&&success) {
                 type=2;
                 totalprice-=perprice;
                 totalprice+=perprice;
+                stuidlist.add("null");
                 success=false;
 
 
@@ -455,6 +474,7 @@ public class SelectSeats {
                 type=3;
                 totalprice-=perprice;
                 totalprice+=perprice*0.8;
+                stuidlist.add("null");
                 success=false;
 
 
@@ -473,22 +493,5 @@ public class SelectSeats {
 
         }
     };
-    public String generateid(){
-        int[] id=new int[8];
-        for(int i=0;i<=7;i++){
-            Random rd = new Random();
-            id[i]= rd.nextInt(4)+1;
-        }
-        String s = "";
-        for(int i=0;i<id.length;i++){
-            s = s + id[i];//拼接成字符串，最终放在变量s中
-        }
-        return s;
-
-
-
-    }
-
-
 
 }

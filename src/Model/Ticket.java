@@ -69,9 +69,9 @@ public class Ticket {
      * Print ticket into the filePath;
      * after each print, the iterationNumber add by 1
      */
-    private void printTicket() {
+    public void printTicket() {
         this.ticketNumber = Ticket.convertTicketNum(Ticket.iterationNumber++, 8);
-        String filePath = "./tickets/";
+        String filePath = "C:\\Users\\Administrator\\Desktop\\ticket";
 
         try {
             File file = new File(filePath + this.ticketNumber);
