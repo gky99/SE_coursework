@@ -30,14 +30,12 @@ import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
 public class Ticket {
+    public static ArrayList<Ticket> tickets = new ArrayList();
     /**
      * An auto increase variable to generate ticket number.
      */
     private static int iterationNumber = 0;
     String ticketNumber;
-
-    public static ArrayList<Ticket> tickets = new ArrayList();
-
     Play play;
 
     String ticketType;
@@ -61,7 +59,45 @@ public class Ticket {
         this(film, ticketType, seat, null);
     }
 
+    /**
+     * Count the ticket price according to the ticketType
+     */
+    public static double countPrice(double price, String ticketType) {
+        if (ticketType.equals("Child")) {
+            price = price / 2;
+        } else if (ticketType.equals("Adult")) {
 
+        } else if (ticketType.equals("Senior")) {
+            price = price * 0.8;
+        } else if (ticketType.equals("Student")) {
+            price = price * 0.85;
+        }
+        return price;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(Ticket.convertTicketNum(894, 8));
+    }
+
+    /**
+     * Convert the iteration number into a ticket number in String type.
+     */
+    public static String convertTicketNum(int iterationNumber, int i) {
+        if (iterationNumber > 65595) {
+            return null;
+        } else {
+            StringBuilder stringBuilder = new StringBuilder();
+            if (i > 1) {
+                int temp = iterationNumber % 4;
+                int next = iterationNumber / 4;
+                stringBuilder.append(convertTicketNum(next, i - 1));
+                stringBuilder.append(temp + 1);
+                return stringBuilder.toString();
+            } else {
+                return "" + (iterationNumber + 1);
+            }
+        }
+    }
 
     /**
      * Print ticket into the filePath;
@@ -94,22 +130,6 @@ public class Ticket {
     }
 
     /**
-     * Count the ticket price according to the ticketType
-     */
-    public static double countPrice(double price, String ticketType) {
-        if (ticketType.equals("Child")) {
-            price = price / 2;
-        } else if (ticketType.equals("Adult")) {
-
-        } else if (ticketType.equals("Senior")) {
-            price = price * 0.8;
-        } else if (ticketType.equals("Student")) {
-            price = price * 0.85;
-        }
-        return price;
-    }
-
-    /**
      * Check the legality of the ticket.
      */
     public void confirm() throws Exception {
@@ -117,29 +137,5 @@ public class Ticket {
             throw new IllegalArgumentException("Student ticket should contain student ID");
         }
         this.ticketPrice = countPrice(this.play.price, this.ticketType);
-    }
-
-    public static void main(String[] args) {
-        System.out.println(Ticket.convertTicketNum(894, 8));
-    }
-
-    /**
-     * Convert the iteration number into a ticket number in String type.
-     */
-    public static String convertTicketNum(int iterationNumber, int i) {
-        if (iterationNumber > 65595) {
-            return null;
-        } else {
-            StringBuilder stringBuilder = new StringBuilder();
-            if (i > 1) {
-                int temp = iterationNumber % 4;
-                int next = iterationNumber / 4;
-                stringBuilder.append(convertTicketNum(next, i - 1));
-                stringBuilder.append(temp + 1);
-                return stringBuilder.toString();
-            } else {
-                return "" + (iterationNumber + 1);
-            }
-        }
     }
 }

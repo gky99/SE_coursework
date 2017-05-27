@@ -36,6 +36,16 @@ import java.util.Map;
 public class Report {
     private OutputStreamWriter out = null;
 
+    public Report() {
+        try {
+            open();
+            filmStatistic();
+            out.close();
+        } catch (IOException e) {
+
+        }
+    }
+
     /**
      * Open an print writer and save it in out.
      */
@@ -56,21 +66,10 @@ public class Report {
         }
     }
 
-    public Report() {
-        try {
-            open();
-            filmStatistic();
-            out.close();
-        } catch (IOException e) {
-
-        }
-    }
-
-
     /**
      * Print the sale statistic.
      */
-    private void filmStatistic() throws IOException{
+    private void filmStatistic() throws IOException {
         int total = 0;
         Map<String, Integer> types = new HashMap<String, Integer>(4);
         types.put("Child", 0);

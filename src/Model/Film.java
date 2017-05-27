@@ -36,16 +36,14 @@ public class Film {
     public String movieName;
 
     public String pathToPicture;
-    
 
-    
+
     public Film(String filmLength, String movieName, String pathToPicture) {
 
-    	this.filmLength = filmLength;
-    	this.movieName = movieName;
-    	this.pathToPicture = pathToPicture;
+        this.filmLength = filmLength;
+        this.movieName = movieName;
+        this.pathToPicture = pathToPicture;
     }
-    
 
 
     /*read all movies*/

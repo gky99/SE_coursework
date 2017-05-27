@@ -34,8 +34,8 @@ public class AvailableSeats extends Seats {
      */
 
     public AvailableSeats(Seats seats) {
-    	this.seats=seats.seats;
-    	  
+        this.seats = seats.seats;
+
     }
 
     public AvailableSeats() {

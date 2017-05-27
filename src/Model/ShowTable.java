@@ -33,12 +33,12 @@ import java.util.ArrayList;
  * Created by Pauli on 2017/4/7.
  */
 public class ShowTable {
-   public  static LocalDate date;
+    public static LocalDate date;
 
     public static ArrayList<Film> films = new ArrayList<>();
     public static ArrayList<CinemaScreen> screens = new ArrayList<>();
 
-    public  static ArrayList<Play> plays = new ArrayList<>();
+    public static ArrayList<Play> plays = new ArrayList<>();
 
     /**
      * Initialize the date to today,
@@ -65,19 +65,6 @@ public class ShowTable {
 
     }
 
-
-    /**
-     * Initialize films according to text files
-     *
-     * @param filePath
-     */
-    private void initCinemaScreens(String filePath) {
-        for (int i = 1; i <= 3; i++) {
-            CinemaScreen screen = new CinemaScreen(filePath, i);
-            screens.add(screen);
-        }
-    }
-
     /**
      * Initialize films according to text files
      *
@@ -100,7 +87,7 @@ public class ShowTable {
                     LocalTime showtime = LocalTime.of(hour, minute, 00);
 
                     Film film = films.get(i);
-                    CinemaScreen cinemaScreen = screens.get(Integer.parseInt(screen)-1);
+                    CinemaScreen cinemaScreen = screens.get(Integer.parseInt(screen) - 1);
 
                     plays.add(new Play(film, cinemaScreen, showtime));
                 }
@@ -119,9 +106,10 @@ public class ShowTable {
             }
         }
     }
-    public static void main (String [] args){
-        ShowTable test= new ShowTable();
-        for(int i =0;i< ShowTable.films.size();i++){
+
+    public static void main(String[] args) {
+        ShowTable test = new ShowTable();
+        for (int i = 0; i < ShowTable.films.size(); i++) {
             System.out.println(ShowTable.films.get(i).movieName);
             System.out.println(ShowTable.films.get(i).filmLength);
             System.out.println(ShowTable.films.get(i).pathToPicture);
@@ -130,5 +118,17 @@ public class ShowTable {
             System.out.println("====================");
         }
         System.out.println(ShowTable.plays.size());
+    }
+
+    /**
+     * Initialize films according to text files
+     *
+     * @param filePath
+     */
+    private void initCinemaScreens(String filePath) {
+        for (int i = 1; i <= 3; i++) {
+            CinemaScreen screen = new CinemaScreen(filePath, i);
+            screens.add(screen);
+        }
     }
 }

@@ -24,7 +24,7 @@ import UI.Movies;
 public class Main {
 
     public static void main(String[] args) {
-    	 new Movies();
-         Movies.show();
+        new Movies();
+        Movies.show();
     }
 }

@@ -33,65 +33,65 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public class TimeTable {
-	public static void show(int n) {
-		// TODO Auto-generated constructor stub
-		MFrame mFrame = new MFrame();
-		ArrayList<Film> movies = new ArrayList<Film>();
-		ArrayList<TimeButton> timebutton = new ArrayList<TimeButton>();
-		JPanel mpanel=new JPanel();
-		JButton back = new JButton("back");
-		Calendar now = Calendar.getInstance();
-		int j = 0;
-		int i =0;
+    public static void show(int n) {
+        // TODO Auto-generated constructor stub
+        MFrame mFrame = new MFrame();
+        ArrayList<Film> movies = new ArrayList<Film>();
+        ArrayList<TimeButton> timebutton = new ArrayList<TimeButton>();
+        JPanel mpanel = new JPanel();
+        JButton back = new JButton("back");
+        Calendar now = Calendar.getInstance();
+        int j = 0;
+        int i = 0;
 
-		movies = ShowTable.films;
-		 for(i = 0; i < ShowTable.plays.size(); i++){
-	        	if(movies.get(n).movieName.equals(ShowTable.plays.get(i).film.movieName)){
+        movies = ShowTable.films;
+        for (i = 0; i < ShowTable.plays.size(); i++) {
+            if (movies.get(n).movieName.equals(ShowTable.plays.get(i).film.movieName)) {
 
-					timebutton.add(new TimeButton());
-					timebutton.get(j).setPreferredSize(new Dimension(100,100));
-					timebutton.get(j).setText(ShowTable.plays.get(i).startTime.toString());
-					timebutton.get(j).setTime(i);
-					mpanel.add(timebutton.get(j));
-					timebutton.get(j).addActionListener(new ActionListener(){
-						public void actionPerformed(ActionEvent e){
-							int n = 0;
-							for(n=0;n<ShowTable.plays.size();n++){
-								if(e.getSource() == timebutton.get(n))
-									break;
-							}
-							mFrame.dispose();//for next UI
-							Play forNext = ShowTable.plays.get(timebutton.get(n).getTime());
-							SelectSeats selectSeats = new SelectSeats();
-							selectSeats.initiate(forNext);
-						}
-					});
+                timebutton.add(new TimeButton());
+                timebutton.get(j).setPreferredSize(new Dimension(100, 100));
+                timebutton.get(j).setText(ShowTable.plays.get(i).startTime.toString());
+                timebutton.get(j).setTime(i);
+                mpanel.add(timebutton.get(j));
+                timebutton.get(j).addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        int n = 0;
+                        for (n = 0; n < ShowTable.plays.size(); n++) {
+                            if (e.getSource() == timebutton.get(n))
+                                break;
+                        }
+                        mFrame.dispose();//for next UI
+                        Play forNext = ShowTable.plays.get(timebutton.get(n).getTime());
+                        SelectSeats selectSeats = new SelectSeats();
+                        selectSeats.initiate(forNext);
+                    }
+                });
 
 
-					int current = ((now.get(Calendar.HOUR_OF_DAY)*60) + now.get(Calendar.MINUTE));
-					int showtime = ((ShowTable.plays.get(i).startTime.getHour()*60)+ShowTable.plays.get(i).startTime.getMinute());
-					if(current > showtime){
-						timebutton.get(j).setEnabled(false);
+                int current = ((now.get(Calendar.HOUR_OF_DAY) * 60) + now.get(Calendar.MINUTE));
+                int showtime = ((ShowTable.plays.get(i).startTime.getHour() * 60) + ShowTable.plays.get(i).startTime.getMinute());
+                if (current > showtime) {
+                    timebutton.get(j).setEnabled(false);
 
-					}
-					j++;
-				}
+                }
+                j++;
+            }
 
-		 }
-		 
-		 back.addActionListener(new ActionListener(){
-				public void actionPerformed(ActionEvent e){
-					mFrame.dispose();
-					new Movies();
-					Movies.show();
-				} 
-			});
-		 
-		 mFrame.setLayout(new BorderLayout());
-		 mFrame.add(BorderLayout.CENTER,mpanel);
-		 mFrame.add(BorderLayout.SOUTH,back);
-		 
-		 
-	}
+        }
+
+        back.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                mFrame.dispose();
+                new Movies();
+                Movies.show();
+            }
+        });
+
+        mFrame.setLayout(new BorderLayout());
+        mFrame.add(BorderLayout.CENTER, mpanel);
+        mFrame.add(BorderLayout.SOUTH, back);
+
+
+    }
 
 }
