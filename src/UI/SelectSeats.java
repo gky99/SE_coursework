@@ -193,8 +193,7 @@ public class SelectSeats {
 
             @Override
             public void mouseEntered(MouseEvent e) {
-                // TODO Auto-generated method stub
-
+                // TODO Auto-generated method stu
             }
 
             @Override
@@ -208,6 +207,7 @@ public class SelectSeats {
             @Override
             public void mouseClicked(MouseEvent e) {
                 frame.dispose();
+                pay.dispose();
                 new Movies();
                 Movies.show();
             }
