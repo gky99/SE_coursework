@@ -105,7 +105,7 @@ public class Ticket {
      */
     public void printTicket() {
         this.ticketNumber = Ticket.convertTicketNum(Ticket.iterationNumber++, 8);
-        String filePath = "./tickets/";
+        String filePath = "./ticket/";
 
         try {
             File file = new File(filePath + this.ticketNumber);
