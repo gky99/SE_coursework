@@ -47,6 +47,7 @@ package UI;
 public class SelectSeats {
     AvailableSeats available;	//存seats的对象
     JFrame frame;				//最外面的框
+
     JPanel panel,p1;			//panel面板上放的是座位图，p1面板上放的是座位图下面的东西
     JButton[][] button;			//座位的按钮
     JButton confirm = new JButton();//确认按钮
@@ -96,6 +97,7 @@ public class SelectSeats {
     Dialog d=new Dialog(frame, "please input your student id", success);
     Dialog pay=new Dialog(frame, "please pay for tickets",success);
     public void initiate(Play play){
+
         available =play.seats;
         item1.addActionListener(menuactionListener);
         item2.addActionListener(menuactionListener);
@@ -206,8 +208,8 @@ public class SelectSeats {
             @Override
             public void mouseClicked(MouseEvent e) {
                 frame.dispose();
-                SelectSeats se= new  SelectSeats();
-                se.initiate(play);
+                new Movies();
+                Movies.show();
             }
 
             @Override
@@ -490,6 +492,7 @@ public class SelectSeats {
 
         frame.setVisible(true);
         frame.repaint();
+        frame.setDefaultCloseOperation(frame. DO_NOTHING_ON_CLOSE);
     }
     public ActionListener menuactionListener = new ActionListener() {
 
