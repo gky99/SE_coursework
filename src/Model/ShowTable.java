@@ -45,9 +45,13 @@ public class ShowTable {
      * and all other variable according to text files.
      */
     public ShowTable() {
-        initFilms("/Users/ljy/Documents/SE_coursework/out/production/SE_coursework/Movie/");
-        initCinemaScreens("/Users/ljy/Documents/SE_coursework/out/production/SE_coursework/Avalibleseats");
-        initPlays("/Users/ljy/Documents/SE_coursework/out/production/SE_coursework/Movie/");
+//        initFilms("/Users/ljy/Documents/SE_coursework/out/production/SE_coursework/Movie/");
+//        initCinemaScreens("/Users/ljy/Documents/SE_coursework/out/production/SE_coursework/Avalibleseats");
+//        initPlays("/Users/ljy/Documents/SE_coursework/out/production/SE_coursework/Movie/");
+
+        initFilms("./Movie/");
+        initCinemaScreens("./Avalibleseats");
+        initPlays("./Movie/");
     }
 
     /**
