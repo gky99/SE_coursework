@@ -107,7 +107,7 @@ public class ShowTable {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         ShowTable test = new ShowTable();
         for (int i = 0; i < ShowTable.films.size(); i++) {
             System.out.println(ShowTable.films.get(i).movieName);
@@ -118,6 +118,11 @@ public class ShowTable {
             System.out.println("====================");
         }
         System.out.println(ShowTable.plays.size());
+        Ticket ticket = new Ticket(ShowTable.plays.get(1), "Adult", "A1");
+        ticket.confirm();
+        System.out.println(ticket.ticketPrice);
+        ticket.printTicket();
+        System.out.println(ticket.ticketNumber);
     }
 
     /**
