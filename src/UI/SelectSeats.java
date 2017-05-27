@@ -88,10 +88,13 @@ public class SelectSeats {
     JPanel inputid=new JPanel();
     JLabel input=new JLabel("please input your student id:");
     JLabel noinput=new JLabel("empty input");
+    JLabel paylabel;
     JTextField f = new JTextField(15);
     JButton idconfirm ;
     JButton cancel ;
+    JButton confirmpay;
     Dialog d=new Dialog(frame, "please input your student id", success);
+    Dialog pay=new Dialog(frame, "please pay for tickets",success);
     public void initiate(Play play){
         available =play.seats;
         item1.addActionListener(menuactionListener);
@@ -104,8 +107,10 @@ public class SelectSeats {
         menu.add(item4);
         //available = new AvailableSeats("filepath",2);
         d.setBounds(300, 150, 350, 150);
+        pay.setBounds(300, 150, 350, 150);
         f.setBounds(150, 150, 200, 150);
         d.setLayout(new FlowLayout());
+        pay.setLayout(new FlowLayout());
         d.add(input);
         d.add(f);
         idconfirm = new JButton("confirm");
@@ -196,6 +201,38 @@ public class SelectSeats {
 
             }});
         d.add(cancel);
+        confirmpay=new JButton("pay successfully");
+        confirmpay.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                frame.dispose();
+                SelectSeats se= new  SelectSeats();
+                se.initiate(play);
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
+
+
+
 
         frame = new JFrame("Select Seats");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -413,7 +450,13 @@ public class SelectSeats {
                    String inputid=stuidlist.get(i);
                    Ticket ticket=new Ticket(play,inputtickettype,inputseat,inputid);
                    ticket.printTicket();
+
                 }
+                paylabel=new JLabel("you should pay"+totalprice+"yuan for tickets");
+                pay.add(paylabel);
+                pay.add(confirmpay);
+                pay.setVisible(true);
+
 
             }
 
