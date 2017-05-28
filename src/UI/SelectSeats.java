@@ -208,7 +208,7 @@ public class SelectSeats {
             @Override
             public void mouseClicked(MouseEvent e) {
                 frame.dispose();
-                pay. dispose ();
+                pay.dispose();
                 new Movies();
                 Movies.show();
             }
