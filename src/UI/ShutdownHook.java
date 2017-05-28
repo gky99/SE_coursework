@@ -1,5 +1,3 @@
-import UI.Movies;
-
 /*
  * Copyright (c) 2017, Pauli Guan.
  *
@@ -21,10 +19,11 @@ import UI.Movies;
  *
  */
 
-public class Main {
+package UI;
 
-    public static void main(String[] args) {
-        new Movies();
-        Movies.show();
-    }
+/**
+ * Created by Pauli on 2017/5/28.
+ */
+public class BeforeExit implements Runnable {
+    
 }
