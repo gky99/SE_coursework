@@ -113,11 +113,12 @@ public class ShowTable {
             System.out.println(ShowTable.films.get(i).movieName);
             System.out.println(ShowTable.films.get(i).filmLength);
             System.out.println(ShowTable.films.get(i).pathToPicture);
-            System.out.println(ShowTable.plays.get(1).price);
-            System.out.println(ShowTable.plays.get(1).startTime);
+            System.out.println(ShowTable.plays.get(i).price);
+            System.out.println(ShowTable.plays.get(i).startTime);
             System.out.println("====================");
         }
         System.out.println(ShowTable.plays.size());
+
     }
 
 
