@@ -38,7 +38,7 @@ public class Report {
 
     public Report() {
         try {
-            open();
+            out = open();
             filmStatistic();
             out.close();
         } catch (IOException e) {
@@ -90,13 +90,19 @@ public class Report {
                 }
             }
             out.append("Movie: " + film.movieName);
+            out.append("\n");
             out.append("Sales: " + count);
             out.append("\n");
+            out.append("\n");
+
             total += count;
         }
         for (Map.Entry<String, Integer> type : types.entrySet()) {
-            out.append(type.getKey() + "ticket: " + type.getValue());
+            out.append(type.getKey() + " ticket: " + type.getValue()/ShowTable.films.size());
+            out.append("\n");
         }
+
+        out.append("\n");
         out.append("Total sale: " + total);
     }
 

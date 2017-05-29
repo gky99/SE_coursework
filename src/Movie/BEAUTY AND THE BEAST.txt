@@ -1,4 +1,0 @@
-10:00,screen1
-10:30,screen3
-12:30,screen1
-13:00,screen3

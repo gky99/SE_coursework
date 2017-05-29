@@ -21,9 +21,17 @@
 
 package UI;
 
+import Model.Report;
 /**
  * Created by Pauli on 2017/5/28.
  */
-public class BeforeExit implements Runnable {
-    
+public class ShutdownHook implements Runnable {
+    public ShutdownHook() {
+        Runtime.getRuntime().addShutdownHook(new Thread(this));
+    }
+
+    @Override
+    public void run() {
+        new Report();
+    }
 }

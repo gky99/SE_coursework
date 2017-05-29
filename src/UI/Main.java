@@ -31,6 +31,7 @@ public class Main {
         new Movies();
 
         Movies.show();
+        new ShutdownHook();
     }
 
 }

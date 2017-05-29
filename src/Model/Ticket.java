@@ -114,13 +114,19 @@ public class Ticket {
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream, "UTF-8");
 
             outputStreamWriter.append("Ticket Number: " + this.ticketNumber);
+            outputStreamWriter.append("\n");
             outputStreamWriter.append("Ticket Type: " + this.ticketType);
-            if (this.studentID != null) {
+            outputStreamWriter.append("\n");
+            if (this.ticketType.equals("Student")) {
                 outputStreamWriter.append("Student ID:" + this.studentID);
+                outputStreamWriter.append("\n");
             }
             outputStreamWriter.append("Film Name: " + this.play.film.movieName);
+            outputStreamWriter.append("\n");
             outputStreamWriter.append("Play Time: " + this.play.startTime);
+            outputStreamWriter.append("\n");
             outputStreamWriter.append("Screnn: " + this.play.getScreen().screenNum);
+            outputStreamWriter.append("\n");
             outputStreamWriter.append("Seat: " + this.seat);
             outputStreamWriter.close();
         } catch (Exception e) {
