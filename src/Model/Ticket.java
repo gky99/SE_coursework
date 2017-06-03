@@ -27,19 +27,15 @@ package Model;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
-import java.net.URL;
 import java.util.ArrayList;
 
 public class Ticket {
+    public static ArrayList<Ticket> tickets = new ArrayList();
     /**
      * An auto increase variable to generate ticket number.
      */
     private static int iterationNumber = 0;
     String ticketNumber;
-
-    public static ArrayList<Ticket> tickets = new ArrayList();
-
     Play play;
 
     String ticketType;
@@ -63,38 +59,6 @@ public class Ticket {
         this(film, ticketType, seat, null);
     }
 
-
-
-    /**
-     * Print ticket into the filePath;
-     * after each print, the iterationNumber add by 1
-     */
-    private void printTicket() {
-        this.ticketNumber = Ticket.convertTicketNum(Ticket.iterationNumber++, 8);
-        String filePath = "./tickets/";
-
-        try {
-            File file = new File(filePath + this.ticketNumber);
-            FileOutputStream fileOutputStream = new FileOutputStream(file);
-
-            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream, "UTF-8");
-
-            outputStreamWriter.append("Ticket Number: " + this.ticketNumber);
-            outputStreamWriter.append("Ticket Type: " + this.ticketType);
-            if (this.studentID != null) {
-                outputStreamWriter.append("Student ID:" + this.studentID);
-            }
-            outputStreamWriter.append("Film Name: " + this.play.film.movieName);
-            outputStreamWriter.append("Play Time: " + this.play.startTime);
-            outputStreamWriter.append("Screnn: " + this.play.getScreen().screenNum);
-            outputStreamWriter.append("Seat: " + this.seat);
-            outputStreamWriter.close();
-        } catch (Exception e) {
-
-        }
-        Ticket.tickets.add(this);
-    }
-
     /**
      * Count the ticket price according to the ticketType
      */
@@ -109,16 +73,6 @@ public class Ticket {
             price = price * 0.85;
         }
         return price;
-    }
-
-    /**
-     * Check the legality of the ticket.
-     */
-    public void confirm() throws Exception {
-        if (ticketType.equals("Student")) {
-            throw new IllegalArgumentException("Student ticket should contain student ID");
-        }
-        this.ticketPrice = countPrice(this.play.price, this.ticketType);
     }
 
     public static void main(String[] args) {
@@ -143,5 +97,51 @@ public class Ticket {
                 return "" + (iterationNumber + 1);
             }
         }
+    }
+
+    /**
+     * Print ticket into the filePath;
+     * after each print, the iterationNumber add by 1
+     */
+    public void printTicket() {
+        this.ticketNumber = Ticket.convertTicketNum(Ticket.iterationNumber++, 8);
+        String filePath = "./ticket/";
+
+        try {
+            File file = new File(filePath + this.ticketNumber);
+            FileOutputStream fileOutputStream = new FileOutputStream(file);
+
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream, "UTF-8");
+
+            outputStreamWriter.append("Ticket Number: " + this.ticketNumber);
+            outputStreamWriter.append("\n");
+            outputStreamWriter.append("Ticket Type: " + this.ticketType);
+            outputStreamWriter.append("\n");
+            if (this.ticketType.equals("Student")) {
+                outputStreamWriter.append("Student ID:" + this.studentID);
+                outputStreamWriter.append("\n");
+            }
+            outputStreamWriter.append("Film Name: " + this.play.film.movieName);
+            outputStreamWriter.append("\n");
+            outputStreamWriter.append("Play Time: " + this.play.startTime);
+            outputStreamWriter.append("\n");
+            outputStreamWriter.append("Screnn: " + this.play.getScreen().screenNum);
+            outputStreamWriter.append("\n");
+            outputStreamWriter.append("Seat: " + this.seat);
+            outputStreamWriter.close();
+        } catch (Exception e) {
+
+        }
+        Ticket.tickets.add(this);
+    }
+
+    /**
+     * Check the legality of the ticket.
+     */
+    public void confirm() throws Exception {
+        if (ticketType.equals("Student")) {
+            throw new IllegalArgumentException("Student ticket should contain student ID");
+        }
+        this.ticketPrice = countPrice(this.play.price, this.ticketType);
     }
 }

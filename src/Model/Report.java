@@ -21,8 +21,10 @@
 
 package Model;
 
-import java.io.*;
-import java.net.URL;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -33,6 +35,16 @@ import java.util.Map;
  */
 public class Report {
     private OutputStreamWriter out = null;
+
+    public Report() {
+        try {
+            out = open();
+            filmStatistic();
+            out.close();
+        } catch (IOException e) {
+
+        }
+    }
 
     /**
      * Open an print writer and save it in out.
@@ -54,21 +66,10 @@ public class Report {
         }
     }
 
-    public Report() {
-        try {
-            open();
-            filmStatistic();
-            out.close();
-        } catch (IOException e) {
-
-        }
-    }
-
-
     /**
      * Print the sale statistic.
      */
-    private void filmStatistic() throws IOException{
+    private void filmStatistic() throws IOException {
         int total = 0;
         Map<String, Integer> types = new HashMap<String, Integer>(4);
         types.put("Child", 0);
@@ -89,13 +90,19 @@ public class Report {
                 }
             }
             out.append("Movie: " + film.movieName);
+            out.append("\n");
             out.append("Sales: " + count);
             out.append("\n");
+            out.append("\n");
+
             total += count;
         }
         for (Map.Entry<String, Integer> type : types.entrySet()) {
-            out.append(type.getKey() + "ticket: " + type.getValue());
+            out.append(type.getKey() + " ticket: " + type.getValue()/ShowTable.films.size());
+            out.append("\n");
         }
+
+        out.append("\n");
         out.append("Total sale: " + total);
     }
 

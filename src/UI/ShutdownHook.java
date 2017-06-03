@@ -1,5 +1,3 @@
-import UI.Movies;
-
 /*
  * Copyright (c) 2017, Pauli Guan.
  *
@@ -21,10 +19,19 @@ import UI.Movies;
  *
  */
 
-public class Main {
+package UI;
 
-    public static void main(String[] args) {
-        new Movies();
-        Movies.show();
+import Model.Report;
+/**
+ * Created by Pauli on 2017/5/28.
+ */
+public class ShutdownHook implements Runnable {
+    public ShutdownHook() {
+        Runtime.getRuntime().addShutdownHook(new Thread(this));
+    }
+
+    @Override
+    public void run() {
+        new Report();
     }
 }
