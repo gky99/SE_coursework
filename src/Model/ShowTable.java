@@ -50,7 +50,7 @@ public class ShowTable {
 //        initPlays("/Users/ljy/Documents/SE_coursework/out/production/SE_coursework/Movie/");
 
         initFilms("./Movie/");
-        initCinemaScreens("./Avalibleseats");
+        initCinemaScreens("./Seats");
         initPlays("./Movie/");
     }
 
